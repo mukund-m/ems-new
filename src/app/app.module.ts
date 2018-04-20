@@ -16,7 +16,7 @@ import { AuthModule } from './components/auth/auth.module';
 import { BackgroundsModule } from './components/backgrounds/backgrounds.module';
 import { ProfileModule } from './components/profile/profile.module';
 import { MiscModule } from './components/misc/misc.module';
-
+import { DataTablesModule } from 'angular-datatables';
 // Shared
 import {
   FooterComponent,
@@ -41,7 +41,8 @@ import { AboutMeComponent } from './components/about-me/about-me.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { PageNotFoundComponent } from './components/not-found/not-found.component';
 import { EmailMeComponent } from './components/email-me/email-me.component';
-import { StudentComponent } from './components/student/student.component';
+import { StudentComponent } from './components/students/student/student.component';
+import { StudentFormComponent } from './components/students/student-form/student-form.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { StudentComponent } from './components/student/student.component';
     FooterComponent,
     PageNotFoundComponent,
     EmailMeComponent,
-    StudentComponent
+    StudentComponent,
+    StudentFormComponent
     // routingComponents
   ],
   imports: [
@@ -73,7 +75,8 @@ import { StudentComponent } from './components/student/student.component';
     AuthModule,
     BackgroundsModule,
     ProfileModule,
-    MiscModule
+    MiscModule,
+    DataTablesModule
   ],
   providers: [
     UserService,

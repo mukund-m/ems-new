@@ -23,7 +23,8 @@ import { MessagesComponent } from './components/messages/messages.component';
 
 // Protected
 import { AuthGuardService } from './components/shared';
-import { StudentComponent } from 'app/components/student/student.component';
+import { StudentComponent } from 'app/components/students/student/student.component';
+import { StudentFormComponent } from 'app/components/students/student-form/student-form.component';
 
 // Routing
 const appRoutes: Routes = [
@@ -44,6 +45,8 @@ const appRoutes: Routes = [
   { path: 'profile-settings', component: ProfileSettingsComponent, canActivate: [AuthGuardService] },
   { path: 'messages', component: MessagesComponent, canActivate: [AuthGuardService] },
   { path: 'students', component: StudentComponent, canActivate: [AuthGuardService] },
+  { path: 'student-form', component: StudentFormComponent, canActivate: [AuthGuardService] },
+  
   { path: '**', component: PageNotFoundComponent }
 ];
 

@@ -1,0 +1,19 @@
+<h1>STUDENTS</h1>
+<button mat-raised-button class="mat-raised mat-primary" (click)="addStudent()">Add New Student</button>
+<br><br><br><br>
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let person of students">
+      <td>{{ person.data.name }}</td>
+      <td>{{ person.data.phone }}</td>
+      <td>{{ person.data.email }}</td>
+    </tr>
+  </tbody>
+  </table>

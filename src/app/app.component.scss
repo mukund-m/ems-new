@@ -10,4 +10,15 @@
   z-index: 20;
   display: inherit;
   padding: 0;
+  min-height: 100vh;
+}
+
+.container mat-sidenav-content {
+  min-height: 100vh
+}
+
+.footer {
+  bottom: 0px;
+ // position: absolute;
+  width: 100%;
 }

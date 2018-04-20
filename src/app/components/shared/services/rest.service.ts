@@ -6,7 +6,7 @@ import { Observable }               from 'rxjs/Observable';
 @Injectable()
 export class RestService {
 
-  private static REST_URL = 'http://us-central1-user-management-da33b.cloudfunctions.net/bananabox';
+  private static REST_URL = 'https://us-central1-user-management-da33b.cloudfunctions.net/bananabox';
   headers: any;
   test: string;
 

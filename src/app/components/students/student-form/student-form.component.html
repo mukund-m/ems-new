@@ -1,0 +1,43 @@
+<div id="content">
+  <mat-card>
+    <h1 *ngIf="!studentId">Create New Student</h1>
+    <h1 *ngIf="studentId">Update Student</h1>
+    <hr>
+    <button *ngIf="studentId" style="float:right" mat-raised-button type="submit" >Add Parent</button>
+    <button *ngIf="studentId" style="float:right" mat-raised-button type="submit" >Manage Fees</button>
+      <form class="form" (ngSubmit)="addStudent(c)" #c="ngForm" >
+      <mat-input-container class="full-width">
+        <input matInput placeholder="Name" id="name" name="name" ngModel required>
+      </mat-input-container>
+
+      <table class="full-width" cellspacing="0"><tr>
+        <td><mat-input-container class="full-width">
+          <input matInput minlength="6" placeholder="Password" id="password" name="password" ngModel required>
+        </mat-input-container></td>
+        <td><mat-input-container class="full-width">
+          <input matInput placeholder="Confirm password" id="cpwd" name="cpwd" ngModel required>
+        </mat-input-container></td>
+      </tr></table>
+
+      <p>
+        <mat-input-container class="full-width">
+          <textarea matInput placeholder="Address" value="Streetname 12a" id="address" name="address" ngModel required></textarea>
+        </mat-input-container>
+      </p>
+
+      <table class="full-width" cellspacing="0"><tr>
+        <td><mat-input-container class="full-width">
+          <input matInput placeholder="phone" type="phone" id="phone" name="phone" ngModel required>
+        </mat-input-container></td>
+        <td><mat-input-container class="full-width">
+          <input matInput placeholder="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" type="email" id="email" name="email" ngModel required>
+        </mat-input-container></td>
+      </tr></table>      
+      
+      <br />
+      <button *ngIf="!studentId" mat-raised-button type="submit" [disabled]="c.invalid">Create Student</button>
+      <button *ngIf="studentId" mat-raised-button type="submit" [disabled]="c.invalid">Update Student</button>
+      <p *ngIf="error">{{error}}</p>
+    </form>
+  </mat-card>
+</div>
