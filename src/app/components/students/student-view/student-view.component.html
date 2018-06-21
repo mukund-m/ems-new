@@ -1,0 +1,245 @@
+<div id="center" style="position:fixed;top:50%;left:50%;z-index:10">
+  <mat-progress-spinner *ngIf="loading" class="example-margin" color="primary" mode="indeterminate">
+  </mat-progress-spinner>
+</div>
+
+
+<mat-tab-group>
+  <mat-tab label="Student Details">
+    <mat-card class="col-sm-6  mat-elevation-z8" style="margin: 1%">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Student Details</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table>
+          <tr>
+            <td>Name:</td>
+            <td> &nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput disabled [value]="student.name">
+              </mat-form-field>
+            </td>
+            <td>Phone:</td>
+            <td> &nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput disabled [value]="student.phone">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>Email:</td>
+            <td> &nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput disabled [value]="student.email">
+              </mat-form-field>
+            </td>
+            <td>Register Number:</td>
+            <td> &nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput disabled [value]="student.registerNumber">
+              </mat-form-field>
+            </td>
+          </tr>
+         
+          <tr>
+            <td>Address:</td>
+            <td> &nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput disabled [value]="student.addressLine1">
+              </mat-form-field>
+            </td>
+            <td>Place:</td>
+            <td> &nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput disabled [value]="student.addressLine2">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>Land Mark:</td>
+            <td> &nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput disabled [value]="student.addressLine3">
+              </mat-form-field>
+            </td>
+            <td>Remarks:</td>
+            <td> &nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput disabled [value]="student.remarks">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+              <td>Joined On:</td>
+              <td> &nbsp;&nbsp;&nbsp;&nbsp;
+                <mat-form-field>
+                  <input matInput disabled [value]="student.joinedOn">
+                </mat-form-field>
+              </td>
+          </tr>
+        </table>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button class="mat-raised mat-primary" (click)="editStudent()">Edit Student</button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="col-sm-5  mat-elevation-z8" style="margin: 1%" *ngIf="!parentId">
+      <button mat-raised-button class="mat-raised mat-primary" (click)="addParent()">Add Parent</button>
+    </mat-card>
+    <mat-card class="col-sm-5  mat-elevation-z8" style="margin: 1%" *ngIf="parentId">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Parent Details</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table>
+          <tr>
+            <td>Name:</td>
+            <td> &nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput disabled [value]="parent.name">
+              </mat-form-field>
+            </td>
+            <td>Phone:</td>
+            <td> &nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput disabled [value]="parent.phone">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>Email:</td>
+            <td> &nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput disabled [value]="parent.email">
+              </mat-form-field>
+            </td>
+            <td>Address:</td>
+            <td> &nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput disabled [value]="parent.addressLine1">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>Place:</td>
+            <td> &nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput disabled [value]="parent.addressLine2">
+              </mat-form-field>
+            </td>
+            <td>Land Mark:</td>
+            <td> &nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput disabled [value]="parent.addressLine3">
+              </mat-form-field>
+            </td>
+          </tr>
+
+        </table>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="addParent()">Edit Data</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label="Fee Details">
+    <mat-card class="col-sm-5  mat-elevation-z8" style="margin: 1%" *ngIf="!feeId">
+      <button *ngIf="!feeId" mat-raised-button class="mat-raised mat-primary" (click)="addFee()">Add Fee</button>
+    </mat-card>
+    <mat-card class="col-sm-6 mat-elevation-z8" style="margin: 1%" *ngIf="feeId">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Fee Details</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table>
+          <tr>
+            <td>Total Amount:</td>
+            <td> &nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput disabled [value]="fee.totalAmount">
+              </mat-form-field>
+            </td>
+            <td>Payed Amount:</td>
+            <td> &nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput disabled [value]="fee.payedAmount">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>Advance Amount:</td>
+            <td> &nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput disabled [value]="fee.advanceAmount">
+              </mat-form-field>
+            </td>
+            <td>Balance:</td>
+            <td> &nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput disabled [value]="fee.balance">
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>Due Amount:</td>
+            <td> &nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput disabled [value]="fee.dueAmount">
+              </mat-form-field>
+            </td>
+            <td>Reciept Number:</td>
+            <td> &nbsp;&nbsp;&nbsp;&nbsp;
+              <mat-form-field>
+                <input matInput disabled [value]="parent.recieptNumber">
+              </mat-form-field>
+            </td>
+          </tr>
+
+        </table>
+
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button class="mat-raised mat-primary" (click)="addInstallement()">Add Installment</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="col-sm-5 mat-elevation-z8" style="margin: 1%" *ngIf="feeId">
+      <h4>Installments</h4>
+      <div class="example-container ">
+        <mat-table #table [dataSource]="dataSource">
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="position">
+            <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.data.amount}} </mat-cell>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.data.paymentDate}} </mat-cell>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="weight">
+            <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.data.collectedBy}} </mat-cell>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="symbol">
+            <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.data.recieptNumber}} </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </div>
+    </mat-card>
+  </mat-tab>
+
+</mat-tab-group>

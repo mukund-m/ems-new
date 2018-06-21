@@ -1,6 +1,7 @@
 <!-- Sidenav -->
+<mat-sidenav-container (backdropClick)="dropClicked()" class="container" >
 
-  <mat-sidenav style="min-height: 100vh;" mode="over" opened="false" #sidenav class="sidenav">
+  <mat-sidenav style="min-height: 100vh;" (backdropClick)="dropClicked()" mode="over" opened="false" #sidenav class="sidenav">
 
   <img [src]="angularImage">
   
@@ -23,6 +24,24 @@
     <button mat-button routerLink="/students" (click)="sidenav.close()">
       <mat-icon class="contact">email</mat-icon>
       <span>Students</span>
+    </button>
+    <button mat-button routerLink="/courses" (click)="sidenav.close()">
+      <mat-icon class="contact">email</mat-icon>
+      <span>Courses</span>
+    </button>
+    <button mat-button routerLink="/staffs" (click)="sidenav.close()">
+      <mat-icon class="contact">email</mat-icon>
+      <span>Staffs</span>
+    </button>
+    
+    <button mat-button routerLink="/branches" (click)="sidenav.close()">
+      <mat-icon class="contact">email</mat-icon>
+      <span>Branches</span>
+    </button>
+    
+    <button mat-button routerLink="/fee-dashboard" (click)="sidenav.close()">
+      <mat-icon class="contact">email</mat-icon>
+      <span>Fee Dashboard</span>
     </button>
 
     <!-- <button mat-button routerLink="/misc" (click)="sidenav.close()">
@@ -158,3 +177,8 @@
   </mat-tab>
 
 </mat-tab-group> -->
+<router-outlet></router-outlet>
+<div id="messages"> </div>
+<div id="users"> </div>
+<div id="touch"> </div>
+</mat-sidenav-container>

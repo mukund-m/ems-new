@@ -1,0 +1,46 @@
+<h2 mat-dialog-title>Add Installment</h2>
+
+<mat-dialog-content>
+
+  <mat-card>
+
+    <mat-card-content>
+      <form class="form" [formGroup]="form">
+        <mat-input-container class="col-sm-6">
+          <input matInput formControlName="amount" placeholder="Amount" type="number" [value]="installment?.amount" required>
+        </mat-input-container>
+
+        <mat-input-container class="col-sm-6">
+          <input matInput formControlName="collectedBy" placeholder="collectedBy" type="string" [value]="installment?.collectedBy"
+            name="collectedBy" ngModel required>
+        </mat-input-container>
+
+        <mat-input-container class="col-sm-6">
+          <input matInput formControlName="recieptNumber" placeholder="recieptNumber" type="string" [value]="installment?.recieptNumber"
+            name="recieptNumber" ngModel required>
+        </mat-input-container>
+
+
+
+        <mat-input-container class="col-sm-6">
+
+          <input formControlName="paymentDate" matInput [matDatepicker]="picker" placeholder="Payed On" id="paymentDate" name="paymentDate"
+            ngModel required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+
+        </mat-input-container>
+
+        <br />
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="mat-raised-button mat-primary" mat-raised-button (click)="save()" [disabled]="form.invalid">Add Installment</button>
+  <button class="mat-raised-button" (click)="close()">Close</button>
+  <!-- <button class="mat-raised-button mat-primary"(click)="save()">Save</button> -->
+</mat-dialog-actions>

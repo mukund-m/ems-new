@@ -1,43 +1,85 @@
+<div id="center" style="position:fixed;top:50%;left:50%;z-index:10">
+  <mat-progress-spinner *ngIf="loading" class="example-margin" color="primary" mode="indeterminate">
+  </mat-progress-spinner>
+</div>
+
 <div id="content">
   <mat-card>
     <h1 *ngIf="!studentId">Create New Student</h1>
     <h1 *ngIf="studentId">Update Student</h1>
+    <button *ngIf="studentId" style="float:right" mat-raised-button (click)="addParent()">Add Parent</button>
+    <button *ngIf="studentId" style="float:right" mat-raised-button type="submit">Manage Fees</button>
     <hr>
-    <button *ngIf="studentId" style="float:right" mat-raised-button type="submit" >Add Parent</button>
-    <button *ngIf="studentId" style="float:right" mat-raised-button type="submit" >Manage Fees</button>
-      <form class="form" (ngSubmit)="addStudent(c)" #c="ngForm" >
-      <mat-input-container class="full-width">
-        <input matInput placeholder="Name" id="name" name="name" ngModel required>
-      </mat-input-container>
 
-      <table class="full-width" cellspacing="0"><tr>
-        <td><mat-input-container class="full-width">
-          <input matInput minlength="6" placeholder="Password" id="password" name="password" ngModel required>
-        </mat-input-container></td>
-        <td><mat-input-container class="full-width">
-          <input matInput placeholder="Confirm password" id="cpwd" name="cpwd" ngModel required>
-        </mat-input-container></td>
-      </tr></table>
-
-      <p>
-        <mat-input-container class="full-width">
-          <textarea matInput placeholder="Address" value="Streetname 12a" id="address" name="address" ngModel required></textarea>
+    <mat-card-content>
+      <form class="form" [formGroup]="form">
+        <mat-input-container class="col-sm-6">
+          <input matInput placeholder="Name" id="name" [value]="studentData?.name" formControlName="name" required>
         </mat-input-container>
-      </p>
 
-      <table class="full-width" cellspacing="0"><tr>
-        <td><mat-input-container class="full-width">
-          <input matInput placeholder="phone" type="phone" id="phone" name="phone" ngModel required>
-        </mat-input-container></td>
-        <td><mat-input-container class="full-width">
-          <input matInput placeholder="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" type="email" id="email" name="email" ngModel required>
-        </mat-input-container></td>
-      </tr></table>      
-      
-      <br />
-      <button *ngIf="!studentId" mat-raised-button type="submit" [disabled]="c.invalid">Create Student</button>
-      <button *ngIf="studentId" mat-raised-button type="submit" [disabled]="c.invalid">Update Student</button>
-      <p *ngIf="error">{{error}}</p>
-    </form>
+
+        <mat-input-container class="col-sm-6">
+          <input matInput minlength="6" type="password" placeholder="Password" [value]="studentData?.password" formControlName="password"
+            required>
+        </mat-input-container>
+        <mat-input-container class="col-sm-6">
+          <input type="password" matInput placeholder="Confirm password" formControlName="cpwd" required>
+        </mat-input-container>
+
+        <mat-input-container class="col-sm-6">
+            <input matInput placeholder="phone" [value]="studentData?.phone" type="phone" formControlName="phone" required>
+          </mat-input-container>
+          <mat-input-container class="col-sm-6">
+            <input matInput placeholder="email" [value]="studentData?.email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+              type="email" formControlName="email" required>
+          </mat-input-container>
+
+          <mat-input-container class="col-sm-6">
+              <input matInput placeholder="Register Number" [value]="studentData?.registerNumber" type="text" formControlName="registerNumber" required>
+            </mat-input-container>
+    <div class="col-sm-6">
+        <branch-picker class="col-sm-6" [selectedValue]="studentData?.branch" (select)="branchSelected($event)" class="col-sm-6"> </branch-picker>
+          
+    </div>
+    <div class="col-sm-6">
+        <course-picker class="col-sm-6" [selectedValue]="studentData?.course" (select)="courseSelected($event)" class="col-sm-6"></course-picker>
+          
+    </div>
+    <input type="hidden" placeholder="Branch Mark"  formControlName="branch" required>
+          <input type="hidden" placeholder="Course Mark"  formControlName="course" required>
+        <p>
+          <mat-input-container class="col-sm-6">
+            <textarea matInput placeholder="Address" [value]="studentData?.addressLine1" formControlName="addressLine1" required></textarea>
+          </mat-input-container>
+
+          <mat-input-container class="col-sm-6">
+            <textarea matInput placeholder="Place" [value]="studentData?.addressLine2" formControlName="addressLine2" required></textarea>
+          </mat-input-container>
+
+          <mat-input-container class="col-sm-6">
+            <textarea matInput placeholder="Land Mark" [value]="studentData?.addressLine3" formControlName="addressLine3" required></textarea>
+          </mat-input-container>
+        </p>
+        
+        
+        <mat-input-container class="col-sm-6">
+
+          <input matInput [matDatepicker]="picker" [value]="studentData?.joinedOn" placeholder="Joined On" formControlName="joinedOn"
+            required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+
+        </mat-input-container>
+
+        <mat-input-container class="col-sm-6">
+            <textarea matInput placeholder="Remarks" [value]="studentData?.remarks" formControlName="remarks"></textarea>
+          </mat-input-container>
+
+        <br />
+        <button *ngIf="!studentId" class="mat-raised-button mat-primary" mat-raised-button (click)="save()" [disabled]="form.invalid">Create Student</button>
+        <button *ngIf="studentId" class="mat-raised-button mat-primary" mat-raised-button (click)="save()" [disabled]="form.invalid">Update Student</button>
+        <p *ngIf="error">{{error}}</p>
+      </form>
+    </mat-card-content>
   </mat-card>
 </div>

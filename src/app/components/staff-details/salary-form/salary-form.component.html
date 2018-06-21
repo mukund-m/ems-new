@@ -1,0 +1,55 @@
+<h2>Add Branch</h2>
+
+
+  <mat-card>
+
+    <mat-card-content>
+      <form class="form row" [formGroup]="form">
+        <mat-input-container class="col-sm-6">
+          <input matInput formControlName="amount" placeholder="amount" type="number" [value]="course?.amount" required>
+        </mat-input-container>
+
+         
+        <mat-input-container class="col-sm-6">
+          <input matInput formControlName="month" placeholder="month" type="string" [value]="course?.month"
+            name="month" ngModel required>
+        </mat-input-container>
+
+
+        <mat-input-container class="col-sm-6">
+          <input matInput formControlName="year" placeholder="year" type="text" [value]="course?.year" required>
+        </mat-input-container>
+
+        <mat-input-container class="col-sm-6">
+
+          <input formControlName="payedDate" matInput [matDatepicker]="picker1" placeholder="payedDate" id="payedDate" name="payedDate"
+            ngModel required>
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+
+        </mat-input-container>
+
+        <mat-input-container class="col-sm-6">
+          <input matInput formControlName="accountNumber" placeholder="accountNumber" type="text" [value]="course?.accountNumber" required>
+        </mat-input-container>
+
+        <mat-input-container class="col-sm-6">
+            <input matInput formControlName="invoiceNumber" placeholder="invoiceNumber" type="text" [value]="course?.invoiceNumber" required>
+          </mat-input-container>
+  
+          <mat-input-container class="col-sm-6">
+              <input matInput formControlName="referenceNumber" placeholder="referenceNumber" type="text" [value]="course?.referenceNumber" required>
+            </mat-input-container>
+    
+
+        <br />
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+
+
+
+  <button class="mat-raised-button mat-primary"  mat-raised-button (click)="save()" [disabled]="form.invalid">Add Salary</button>
+  <button class="mat-raised-button" (click)="close()">Close</button>

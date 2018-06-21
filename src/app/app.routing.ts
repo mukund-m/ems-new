@@ -25,6 +25,14 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { AuthGuardService } from './components/shared';
 import { StudentComponent } from 'app/components/students/student/student.component';
 import { StudentFormComponent } from 'app/components/students/student-form/student-form.component';
+import { StudentViewComponent } from 'app/components/students/student-view/student-view.component';
+import { FeeDashboardComponent } from 'app/components/students/fee-dashboard/fee-dashboard.component';
+import { CourseListComponent } from 'app/components/courses/course-list/course-list.component';
+import { CourseFormComponent } from 'app/components/courses/course-form/course-form.component';
+import { StaffListComponent } from 'app/components/staff-details/staff-list/staff-list.component';
+import { StaffComponent } from 'app/components/staff-details/staff/staff.component';
+import { BranchListComponent } from 'app/components/branch/branch-list/branch-list.component';
+import { BranchFormComponent } from 'app/components/branch/branch-form/branch-form.component';
 
 // Routing
 const appRoutes: Routes = [
@@ -44,8 +52,17 @@ const appRoutes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
   { path: 'profile-settings', component: ProfileSettingsComponent, canActivate: [AuthGuardService] },
   { path: 'messages', component: MessagesComponent, canActivate: [AuthGuardService] },
-  { path: 'students', component: StudentComponent, canActivate: [AuthGuardService] },
-  { path: 'student-form', component: StudentFormComponent, canActivate: [AuthGuardService] },
+  { path: 'students', component: StudentComponent },
+  { path: 'student-view', component: StudentViewComponent },
+  { path: 'student-form', component: StudentFormComponent },
+  { path: 'fee-dashboard', component: FeeDashboardComponent },
+  { path: 'courses', component: CourseListComponent },
+  { path: 'course-form', component: CourseFormComponent },
+  
+  { path: 'staffs', component: StaffListComponent },
+  { path: 'staff-form', component: StaffComponent },
+  { path: 'branches', component: BranchListComponent },
+  { path: 'branch-form', component: BranchFormComponent },
   
   { path: '**', component: PageNotFoundComponent }
 ];

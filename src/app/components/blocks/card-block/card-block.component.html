@@ -1,19 +1,44 @@
 <mat-card class="contentCard">
-  <mat-card-header>
-    <!-- <mat-card-title><h1>{{titleCard}} {{numberCard}}</h1></mat-card-title>
-    <mat-card-subtitle>{{subTitleCard}}</mat-card-subtitle> -->
-  </mat-card-header>
-  
-  <mat-card-content style="height:100%">
-    <!-- <p>
-      {{contentCard}}
-    </p> -->
-    <img mat-card-image style="height:100%" [src]="angularImage">
-  </mat-card-content>
+    <div class="row">
+        <div class="col-sm-4">
+          <div class="tile purple" (click)="goto('students')">
+            <h3 class="title">Students</h3>
+            <p>Manage student details, add fee details, view parents</p>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="tile red" (click)="goto('staffs')">
+            <h3 class="title">Staffs</h3>
+            <p>Manage staff details, add salary details</p>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="tile orange" (click)="goto('branches')">
+            <h3 class="title">Branches</h3>
+            <p>Manage your branches of your institution</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="tile green" (click)="goto('courses')">
+            <h3 class="title">Courses</h3>
+            <p>Manage courses offered by your institution</p>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="tile blue" (click)="goto('dashboard')">
+            <h3 class="title">Dashboard</h3>
+            <p>A comprehensive dashboard to view detailed reports, charts, accounts</p>
+          </div>
+          </div>
 
-  <br /><br />
-
-  <mat-card-actions class="buttonCard">
-    <!-- <a button mat-raised-button href="https://github.com/jeroenouw/AngularMaterialFirebase" target="_blank"><h3>Fork on Github</h3></a> -->
-  </mat-card-actions>
+          <div class="col-sm-4">
+              <div class="tile purple" (click)="goto('fee-dashboard')">
+                <h3 class="title">Fee Dashboard</h3>
+                <p>Dashboard specific to fee collection</p>
+              </div>
+              </div>
+          </div>
+          
 </mat-card>

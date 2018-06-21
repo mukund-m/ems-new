@@ -1,0 +1,169 @@
+<div *ngIf="!viewMode">
+<h2>Add Staff</h2>
+
+
+  <mat-card>
+
+    <mat-card-content>
+      <form class="form row" [formGroup]="form">
+        <mat-input-container class="col-sm-6">
+          <input matInput formControlName="name" placeholder="Name" type="text" [value]="course?.name" required>
+        </mat-input-container>
+
+         
+        <mat-input-container class="col-sm-6">
+          <input matInput formControlName="salary" placeholder="salary" type="number" [value]="course?.salary"
+            name="salary" ngModel required>
+        </mat-input-container>
+
+
+        <mat-input-container class="col-sm-6">
+          <input matInput formControlName="contactNumber" placeholder="contactNumber" type="text" [value]="course?.contactNumber" required>
+        </mat-input-container>
+
+        <mat-input-container class="col-sm-6">
+          <input matInput formControlName="email" placeholder="email" type="text" [value]="course?.email" required>
+        </mat-input-container>
+
+        <div class="col-sm-6">
+            <branch-picker class="col-sm-6" [selectedValue]="course?.branch" (select)="branchSelected($event)" class="col-sm-6"> </branch-picker>
+            <input type="hidden" placeholder="Branch Mark"  formControlName="branch" required>      
+        </div>
+
+
+        <mat-input-container class="col-sm-6">
+
+          <input formControlName="joiningDate" matInput [matDatepicker]="picker1" placeholder="joiningDate" id="joiningDate" name="joiningDate"
+            ngModel required>
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+
+        </mat-input-container>
+
+        <mat-input-container class="col-sm-6">
+
+          <input formControlName="endDate" matInput [matDatepicker]="picker" placeholder="endDate" id="endDate" name="endDate"
+            ngModel required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+
+        </mat-input-container>
+
+        <mat-form-field class="col-sm-6" >
+            
+              <mat-chip-list #chipList>
+                <mat-chip color="accent" *ngFor="let skill of skills" [selectable]="selectable"
+                         [removable]="removable" (remove)="remove(skill)">
+                  {{skill}}
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="Add skills"
+                       [matChipInputFor]="chipList"
+                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                       [matChipInputAddOnBlur]="addOnBlur"
+                       (matChipInputTokenEnd)="add($event)" />
+              </mat-chip-list>
+            </mat-form-field>
+  
+
+        <mat-input-container class="col-sm-6">
+          <textarea matInput formControlName="remarks" placeholder="remarks"  [value]="course?.remarks" ></textarea>
+        </mat-input-container>
+
+        <br />
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+
+
+
+  <button class="mat-raised-button mat-primary" *ngIf="!updateMode" mat-raised-button (click)="save()" [disabled]="form.invalid">Add Staff</button>
+  <button class="mat-raised-button mat-primary" *ngIf="updateMode" mat-raised-button (click)="save()" [disabled]="form.invalid">Update Staff</button>
+  <button class="mat-raised-button" (click)="close()">Close</button>
+</div>
+
+<div *ngIf="viewMode">
+  <mat-tab-group>
+    <mat-tab label="Staff Details">
+        <mat-card>
+
+            <mat-card-content>
+              <form class="form row" [formGroup]="form">
+                <mat-input-container class="col-sm-6">
+                  <input matInput formControlName="name" placeholder="Name" type="text" [value]="course?.name" required>
+                </mat-input-container>
+        
+                 
+                <mat-input-container class="col-sm-6">
+                  <input matInput formControlName="salary" placeholder="salary" type="number" [value]="course?.salary"
+                    name="salary" ngModel required>
+                </mat-input-container>
+        
+        
+                <mat-input-container class="col-sm-6">
+                  <input matInput formControlName="contactNumber" placeholder="contactNumber" type="text" [value]="course?.contactNumber" required>
+                </mat-input-container>
+        
+                <mat-input-container class="col-sm-6">
+                  <input matInput formControlName="email" placeholder="email" type="text" [value]="course?.email" required>
+                </mat-input-container>
+        
+               
+        
+        
+                <mat-input-container class="col-sm-6">
+        
+                  <input formControlName="joiningDate" matInput [matDatepicker]="picker1" placeholder="joiningDate" id="joiningDate" name="joiningDate"
+                    ngModel required>
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+        
+                </mat-input-container>
+        
+                <mat-input-container class="col-sm-6">
+        
+                  <input formControlName="endDate" matInput [matDatepicker]="picker" placeholder="endDate" id="endDate" name="endDate"
+                    ngModel required>
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+        
+                </mat-input-container>
+
+                <mat-form-field class="col-sm-6" style="width:100%">
+                  df
+                    <mat-chip-list #chipList>
+                      <mat-chip *ngFor="let skill of skills" [selectable]="true"
+                               [removable]="true" (remove)="remove(fruit)">
+                        {{fruit.name}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                      </mat-chip>
+                      <input placeholder="New fruit..."
+                             [matChipInputFor]="chipList"
+                             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                             [matChipInputAddOnBlur]="addOnBlur"
+                             (matChipInputTokenEnd)="add($event)" />
+                    </mat-chip-list>
+                  </mat-form-field>
+        
+                <mat-input-container class="col-sm-6">
+                  <textarea matInput formControlName="remarks" placeholder="remarks"  [value]="course?.remarks" ></textarea>
+                </mat-input-container>
+        
+                <br />
+        
+              </form>
+            </mat-card-content>
+          </mat-card>
+        
+      </mat-tab>
+      
+
+      <mat-tab label="Salary Details">
+        
+        <button class="mat-raised-button mat-primary"  mat-raised-button (click)="addSalary()" [disabled]="form.invalid">Add Salary</button>
+        <salary-list [staffId]="courseId"></salary-list>
+      </mat-tab>
+    </mat-tab-group>
+</div>

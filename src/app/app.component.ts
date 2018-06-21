@@ -33,4 +33,9 @@ export class AppComponent implements OnInit {
     const dbRefTouch = firebase.database().ref().child('touch');
     dbRefTouch.on('value', snap => console.log(snap.val()));
   }
+
+  dropClicked() {
+    alert('sdf');
+  }
+
 }

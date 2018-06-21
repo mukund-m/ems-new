@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-block',
@@ -6,13 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./card-block.component.scss']
 })
 export class CardBlockComponent {
-  titleCard = 'Angular';
-  numberCard = 5;
-  subTitleCard = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nisl ligula.';
-  contentCard = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nisl ligula.';
-  angularImage: string;
 
-  constructor() {
-    this.angularImage = '/assets/img/bg.jpg'; }
+  constructor(private router: Router) {
 
+  }
+
+  goto(route) {
+    this.router.navigate([route]);
+  }
 }

@@ -1,0 +1,60 @@
+<h2 mat-dialog-title>Add/Edit Fee</h2>
+
+<mat-dialog-content [formGroup]="form">
+
+  <mat-card>
+
+    <mat-card-content>
+      <form class="form" (ngSubmit)="save(c)" #c="ngForm">
+        <mat-input-container class="col-sm-6">
+          <input matInput placeholder="Total Amount" type="number" id="totalAmount" [value]="fee?.totalAmount" name="totalAmount" ngModel
+            required>
+        </mat-input-container>
+
+
+
+        <mat-input-container class="col-sm-6">
+          <input matInput placeholder="advanceAmount" type="number" id="advanceAmount" [value]="fee?.advanceAmount" name="advanceAmount"
+            ngModel required>
+        </mat-input-container>
+
+        <mat-input-container class="col-sm-6">
+          <input matInput placeholder="dueAmount" type="number" id="dueAmount" [value]="fee?.dueAmount" name="dueAmount" ngModel required>
+        </mat-input-container>
+        <mat-input-container class="col-sm-6">
+          <input matInput placeholder="recieptNumber" type="text" id="recieptNumber" [value]="fee?.recieptNumber" name="recieptNumber"
+            ngModel required>
+        </mat-input-container>
+        <mat-input-container class="col-sm-6">
+          <input matInput placeholder="collectedBy" type="text" id="collectedBy" [value]="fee?.collectedBy" name="collectedBy" ngModel
+            required>
+        </mat-input-container>
+        <mat-input-container class="col-sm-6">
+          
+          <input matInput [matDatepicker]="picker" placeholder="Payed On" id="paymentDate" name="paymentDate" ngModel required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+
+        </mat-input-container>
+        <mat-input-container class="col-sm-6">
+            <input disabled="true" matInput placeholder="Payed Amount" type="number" id="payedAmount" [value]="fee?.payedAmount" name="payedAmount"
+              ngModel required>
+          </mat-input-container>
+
+          <mat-input-container class="col-sm-6">
+            <input disabled="true" matInput placeholder="balance" type="number" id="balance" [value]="fee?.balance" name="balance" ngModel
+              required>
+          </mat-input-container>
+        <button class="mat-raised-button mat-primary" mat-raised-button type="submit" [disabled]="c.invalid">Add Fee</button>
+        <br />
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="mat-raised-button" (click)="close()">Close</button>
+  <!-- <button class="mat-raised-button mat-primary"(click)="save()">Save</button> -->
+</mat-dialog-actions>

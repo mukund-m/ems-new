@@ -1,0 +1,9 @@
+
+<mat-form-field>
+  <mat-select placeholder="Choose Course" [(value)]="selectedValue"
+  (selectionChange)="optionSelected($event)">
+    <mat-option *ngFor="let branch of branches" [value]="branch.data.courseCode">
+       {{ branch.data.name }} ({{ branch.data.courseCode }})
+    </mat-option>
+  </mat-select>
+</mat-form-field>

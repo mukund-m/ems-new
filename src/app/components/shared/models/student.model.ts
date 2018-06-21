@@ -7,6 +7,10 @@ export class Student {
     email: string;
     joinedOn: Date;
     createdOn: Date;
-    address: string;
+    addressLine1: string;
+    addressLine2: string;
+    addressLine3: string;
+    registerNumber: string;
     tenantId: string;
+    remarks: string;
 }

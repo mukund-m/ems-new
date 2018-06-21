@@ -1,0 +1,65 @@
+<div id ="center" style="position:fixed;top:50%;left:50%;z-index:10">
+        <mat-progress-spinner *ngIf="loading"
+                class="example-margin"
+                color="accent"
+                mode="indeterminate"
+                >
+            </mat-progress-spinner>
+          </div>
+    
+<!-- 
+<div class="col-sm-3 mat-elevation-z8" style="margin: 1%">
+    <mat-card>
+        <mat-card-content>
+            <h3>Total Students</h3>
+            <h1>{{summary?.totalStudents}}</h1>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div class="col-sm-3 mat-elevation-z8" style="margin: 1%">
+    <mat-card>
+        <mat-card-content>
+            <h3>Total Fee</h3>
+            <h1>{{summary?.totalFee}}</h1>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div class="col-sm-3 mat-elevation-z8" style="margin: 1%">
+    <mat-card>
+        <mat-card-content>
+            <h3>Total Fee Paid</h3>
+            <h1>{{summary?.totalFeePaid}}</h1>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div class="col-sm-3 mat-elevation-z8" style="margin: 1%">
+    <mat-card>
+        <mat-card-content>
+            <h3>Fee info available</h3>
+            <h1>{{summary?.feeAvailableFor}}</h1>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div class="col-sm-3 mat-elevation-z8" style="margin: 1%">
+    <mat-card>
+        <mat-card-content>
+            <h3>No Fee Info Available</h3>
+            <h1>{{summary?.noFeeInfoAvailable}}</h1>
+        </mat-card-content>
+    </mat-card>
+</div> -->
+
+<div class="col-sm-12">
+    <mat-card style="height: 200px">
+<ngx-charts-number-card [textColor]="white"
+      [scheme]="colorScheme"
+      [results]="single"
+      (select)="onSelect($event)">
+    </ngx-charts-number-card>
+</mat-card>
+</div>
+    

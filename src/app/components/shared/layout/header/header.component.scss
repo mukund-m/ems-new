@@ -77,3 +77,15 @@ img {
   max-width: 150px;
   max-height: 180px;
 }
+
+
+.container mat-sidenav-content {
+  min-height: 100vh
+}
+
+.container {
+  z-index: 20;
+  display: contents;
+  padding: 0;
+  min-height: 100vh;
+}

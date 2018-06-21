@@ -1,0 +1,51 @@
+<h2>Add Branch</h2>
+
+
+  <mat-card>
+
+    <mat-card-content>
+      <form class="form row" [formGroup]="form">
+        <mat-input-container class="col-sm-6">
+          <input matInput formControlName="branchName" placeholder="branchName" type="text" [value]="course?.branchName" required>
+        </mat-input-container>
+
+         
+        <mat-input-container class="col-sm-6">
+          <input matInput formControlName="branchCode" placeholder="branchCode" type="string" [value]="course?.branchCode"
+            name="branchCode" ngModel required>
+        </mat-input-container>
+
+
+        <mat-input-container class="col-sm-6">
+          <input matInput formControlName="place" placeholder="place" type="text" [value]="course?.place" required>
+        </mat-input-container>
+
+        <mat-input-container class="col-sm-6">
+          <input matInput formControlName="district" placeholder="district" type="text" [value]="course?.district" required>
+        </mat-input-container>
+
+        <mat-input-container class="col-sm-6">
+            <input matInput formControlName="postCode" placeholder="postCode" type="text" [value]="course?.postCode" required>
+          </mat-input-container>
+  
+          <mat-input-container class="col-sm-6">
+              <input matInput formControlName="emailAddress" placeholder="emailAddress" type="text" [value]="course?.emailAddress" required>
+            </mat-input-container>
+    
+
+        <mat-input-container class="col-sm-6">
+          <textarea matInput formControlName="address" placeholder="address"  [value]="course?.address" ></textarea>
+        </mat-input-container>
+
+        <br />
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+
+
+
+  <button class="mat-raised-button mat-primary" *ngIf="!updateMode" mat-raised-button (click)="save()" [disabled]="form.invalid">Add Branch</button>
+  <button class="mat-raised-button mat-primary" *ngIf="updateMode" mat-raised-button (click)="save()" [disabled]="form.invalid">Update Branch</button>
+  <button class="mat-raised-button" (click)="close()">Close</button>

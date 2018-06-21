@@ -1,0 +1,31 @@
+<div id ="center" style="position:fixed;top:50%;left:50%;z-index:10">
+    <mat-progress-spinner *ngIf="loading"
+            class="example-margin"
+            color="primary"
+            mode="indeterminate"
+            > 
+        </mat-progress-spinner>
+      </div>
+      <mat-card>
+    <h1>Branches</h1>
+    <button mat-raised-button class="mat-raised mat-primary" (click)="addCourse()">Add New Branch</button>
+    <br><br><br><br>
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" style="cursor: pointer" class="row-border hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Branch Code</th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let person of courses" >
+          <td (click)="openCourse(person)">{{ person.data.branchName }}</td>
+          <td (click)="openCourse(person)">{{ person.data.branchCode }}</td>
+         
+          <td><button mat-raised-button class="mat-raised mat-primary" (click)="edit(person)">Edit</button></td>
+          <td><button mat-raised-button class="mat-raised mat-warn" (click)="delete(person)">Delete</button></td>
+        </tr>
+      </tbody>
+      </table>
+    </mat-card>
