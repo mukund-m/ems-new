@@ -3,7 +3,7 @@ import { RestService } from '../../shared/services/rest.service';
 import { Student, AlertService, Course } from '../../shared';
 import { Subject } from 'rxjs/Subject';
 import { Router } from '@angular/router';
-
+ 
 @Component({
   selector: 'app-staff-list',
   templateUrl: './staff-list.component.html',
@@ -18,6 +18,18 @@ export class StaffListComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
   dtOptions: DataTables.Settings = {};
   loading: boolean = false;
+
+  tableColumns = [
+    {title: 'Name', name: 'name', filtering: {filterString: '', placeholder: 'Filter by name'}},
+    {title: 'Phone number', name: 'contactNumber'},
+    {title: 'Branch', name: 'branch', filtering: {filterString: '', placeholder: 'Filter by name'}},
+    {title: 'delete', className: 'cell-width', name: 'delete'},
+    {title: 'edit', className: 'cell-width', name: 'edit'}
+  ];
+
+  tableData = [
+    ];
+
   ngOnInit() {
     this.loadData();
   }
@@ -40,12 +52,20 @@ export class StaffListComponent implements OnInit {
       this.courses = data.items;
       this.loading = false;
       this.dtTrigger.next();
+      let tData = [];
+      for(let temp of data.items) {
+        temp.data.delete = '<button class="btn">Delete</button>'
+        temp.data.edit = '<button class="btn">Edit</button>'
+        temp.data.id = temp.id;
+        tData.push(temp.data);
+      }
+      this.tableData = tData;
       console.log(data);
     })
   }
 
   delete(person) {
-    if (confirm('Are you sure you want to delete ' + person.data.name + '?')) {
+    if (confirm('Are you sure you want to delete ' + person.name + '?')) {
       this.loading = true;
       this.restService.delete('staffs/' + person.id, (data) => {
         this.loading = false;

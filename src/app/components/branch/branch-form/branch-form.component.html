@@ -1,9 +1,7 @@
-<h2>Add Branch</h2>
+<div style="padding-left:2%;padding-right:2%">
+<h3 *ngIf="!updateMode" style="text-align:center">Add Branch</h3>
+<h3 *ngIf="updateMode" style="text-align:center">Update Branch</h3>
 
-
-  <mat-card>
-
-    <mat-card-content>
       <form class="form row" [formGroup]="form">
         <mat-input-container class="col-sm-6">
           <input matInput formControlName="branchName" placeholder="branchName" type="text" [value]="course?.branchName" required>
@@ -40,12 +38,11 @@
         <br />
 
       </form>
-    </mat-card-content>
-  </mat-card>
-
+  
 
 
 
   <button class="mat-raised-button mat-primary" *ngIf="!updateMode" mat-raised-button (click)="save()" [disabled]="form.invalid">Add Branch</button>
   <button class="mat-raised-button mat-primary" *ngIf="updateMode" mat-raised-button (click)="save()" [disabled]="form.invalid">Update Branch</button>
-  <button class="mat-raised-button" (click)="close()">Close</button>
+  
+</div>

@@ -3,12 +3,12 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-titlecase-pipe',
   template: `
-          {{message | titlecase}}
+          {{message }}
   `,
   styles: []
 })
 export class TitleCasePipeComponent implements OnInit {
-   message = 'PCST - EMS';
+   message = 'PCST - Institutional Assistant';
   constructor() { }
 
   ngOnInit() {

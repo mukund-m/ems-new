@@ -34,6 +34,12 @@ export class RestService {
     })
   }
 
+  getFromExternal(url,callback) {
+    this.http.get(url, { headers: this.headers }).subscribe( (data) => {
+      callback(data);
+    })
+  }
+
   delete(url, callback) {
     this.http.delete(RestService.REST_URL + '/'+url, { headers: this.headers }).subscribe( (data) => {
       callback(data);

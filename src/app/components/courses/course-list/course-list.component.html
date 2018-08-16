@@ -1,3 +1,4 @@
+<div style="padding-left:2%;padding-right:2%">
 <div id ="center" style="position:fixed;top:50%;left:50%;z-index:10">
   <mat-progress-spinner *ngIf="loading"
           class="example-margin"
@@ -6,11 +7,11 @@
           >
       </mat-progress-spinner>
     </div>
-    <mat-card>
-  <h1>STUDENTS</h1>
-  <button mat-raised-button class="mat-raised mat-primary" (click)="addCourse()">Add New Course</button>
-  <br><br><br><br>
-  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" style="cursor: pointer" class="row-border hover">
+    
+    <h3  style="text-align:center">Courses</h3>
+  <button style="float: right" mat-raised-button class="mat-raised mat-primary" (click)="addCourse()">Add New Course</button>
+  
+  <!-- <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" style="cursor: pointer" class="row-border hover">
     <thead>
       <tr>
         <th>Name</th>
@@ -33,5 +34,10 @@
         <td><button mat-raised-button class="mat-raised mat-warn" (click)="delete(person)">Delete</button></td>
       </tr>
     </tbody>
-    </table>
-  </mat-card>
+    </table> -->
+
+    <my-table (delete)="delete($event)" (edit)="edit($event)" (rowSelected)="openStudent($event)"
+      [columns]="tableColumns"
+      [data]="tableData"
+      ></my-table>
+  </div>

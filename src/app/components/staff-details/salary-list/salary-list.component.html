@@ -1,31 +1,31 @@
 
-<mat-card class="col-sm-5 mat-elevation-z8" style="margin: 1%" >
-  <h4>Installments</h4>
+<mat-card class="col-sm-11 mat-elevation-z8" style="margin: 1%" >
+  <h4>Salaries</h4>
   <div class="example-container ">
     <mat-table #table [dataSource]="dataSource">
 
       <!-- Position Column -->
       <ng-container matColumnDef="position">
-        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.data.amount}} </mat-cell>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> For Month </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.data.month}} </mat-cell>
       </ng-container>
 
       <!-- Weight Column -->
       <ng-container matColumnDef="weight">
-        <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> For Year </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.data.year}} </mat-cell>
       </ng-container>
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="symbol">
-        <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.data.payedDate}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> Payed Date </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.data.payedDate|date:'dd-MM-yyyy'}} </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

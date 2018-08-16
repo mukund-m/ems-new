@@ -33,6 +33,12 @@ import { StaffListComponent } from 'app/components/staff-details/staff-list/staf
 import { StaffComponent } from 'app/components/staff-details/staff/staff.component';
 import { BranchListComponent } from 'app/components/branch/branch-list/branch-list.component';
 import { BranchFormComponent } from 'app/components/branch/branch-form/branch-form.component';
+import { AdminDashboardComponent } from 'app/components/dashboards/admin-dashboard/admin-dashboard.component';
+import { NotificationsComponent } from 'app/components/notifications/notifications.component';
+import { ExamDetailsComponent } from './components/exam/exam-details/exam-details.component';
+import { ExamListComponent } from './components/exam/exam-list/exam-list.component';
+import { AttendanceRecorderComponent } from './components/attendance/attendance-recorder/attendance-recorder.component';
+import { EnquiryListComponent } from './components/enquiry/enquiry-list/enquiry-list.component';
 
 // Routing
 const appRoutes: Routes = [
@@ -62,8 +68,14 @@ const appRoutes: Routes = [
   { path: 'staffs', component: StaffListComponent },
   { path: 'staff-form', component: StaffComponent },
   { path: 'branches', component: BranchListComponent },
-  { path: 'branch-form', component: BranchFormComponent },
+  { path: 'exams', component: ExamListComponent },
   
+  { path: 'attendance', component: AttendanceRecorderComponent },
+  { path: 'exam-details', component: ExamDetailsComponent },
+  { path: 'branch-form', component: BranchFormComponent },
+  { path: 'admin-dashboard', component: AdminDashboardComponent },
+  { path: 'notifications', component: NotificationsComponent },
+  { path: 'enquriries', component: EnquiryListComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 

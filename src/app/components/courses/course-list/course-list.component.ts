@@ -18,6 +18,19 @@ export class CourseListComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
   dtOptions: DataTables.Settings = {};
   loading: boolean = false;
+  tableColumns = [
+    {title: 'Name', name: 'name', filtering: {filterString: '', placeholder: 'Filter by name'}},
+    {title: 'Course Code', name: 'courseCode'},
+    {title: 'Fee', name: 'feeAmount'},
+    {title: 'Branch', name: 'branch', filtering: {filterString: '', placeholder: 'Filter by name'}},
+    {title: 'delete', className: 'cell-width', name: 'delete'},
+    {title: 'edit', className: 'cell-width', name: 'edit'}
+  ];
+
+  tableData = [
+    ];
+
+
   ngOnInit() {
     this.loadData();
   }
@@ -40,12 +53,20 @@ export class CourseListComponent implements OnInit {
       this.courses = data.items;
       this.loading = false;
       this.dtTrigger.next();
+      let tData = [];
+      for(let temp of data.items) {
+        temp.data.delete = '<button class="btn">Delete</button>'
+        temp.data.edit = '<button class="btn">Edit</button>'
+        temp.data.id = temp.id;
+        tData.push(temp.data);
+      }
+      this.tableData = tData;
       console.log(data);
     })
   }
 
   delete(person) {
-    if (confirm('Are you sure you want to delete ' + person.data.name + '?')) {
+    if (confirm('Are you sure you want to delete ' + person.name + '?')) {
       this.loading = true;
       this.restService.delete('courses/' + person.id, (data) => {
         this.loading = false;

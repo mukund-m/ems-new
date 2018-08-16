@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import * as firebase from 'firebase';
 
 import { WindowService, PhoneNumber, AuthService, AlertService } from '../../shared';
 
@@ -27,21 +26,14 @@ export class PhoneSigninComponent implements OnInit {
 
   ngOnInit() {
     this.windowRef = this.win.windowRef
-    this.windowRef.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container')
-
+   
     this.windowRef.recaptchaVerifier.render()
   }
 
   sendLoginCode() {
     const appVerifier = this.windowRef.recaptchaVerifier;
     const num = this.phoneNumber.e164;
-    firebase.auth().signInWithPhoneNumber(num, appVerifier)
-      .then(result => {
-          this.windowRef.confirmationResult = result;
-          this.alertService.showToaster('Login code is send');
-      })
-      .catch( error => console.log(error) );
-  }
+    }
 
   verifyLoginCode() {
     this.windowRef.confirmationResult
@@ -51,12 +43,7 @@ export class PhoneSigninComponent implements OnInit {
         })
         .then(response => {
           this.router.navigate(['/']);
-          firebase.auth().currentUser.getIdToken()
-          .then(
-              (token: string) => this.token = token
-          );
-          this.alertService.showToaster('Login code is entered');
-        })
-    .catch( error => console.log(error, 'Incorrect code entered?'));
-  }
+   })
+}
+
 }

@@ -20,6 +20,7 @@ export class SalaryFormComponent implements OnInit {
   updateMode: boolean = false;
   viewMode: boolean = false;
   staffId: string;
+  years: number[] = [];
   constructor(
     private dialogRef: MatDialogRef<SalaryFormComponent>,
     @Inject(MAT_DIALOG_DATA) data,
@@ -30,6 +31,12 @@ export class SalaryFormComponent implements OnInit {
         this.staffId = data.id;
         
       }
+      let currentYr = new Date().getFullYear();
+      this.years.push(currentYr-2);
+      this.years.push(currentYr-1);
+      this.years.push(currentYr);
+      this.years.push(currentYr+1);
+      this.years.push(currentYr+2);
      }
 
   ngOnInit() {

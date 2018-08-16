@@ -1,10 +1,9 @@
+<div style="padding-left:2%;padding-right:2%">
 <div *ngIf="!viewMode">
-<h2>Add Staff</h2>
+<h3 *ngIf="!updateMode" style="text-align:center">Add Staff</h3>
+<h3 *ngIf="updateMode" style="text-align:center">Update Staff</h3>
 
 
-  <mat-card>
-
-    <mat-card-content>
       <form class="form row" [formGroup]="form">
         <mat-input-container class="col-sm-6">
           <input matInput formControlName="name" placeholder="Name" type="text" [value]="course?.name" required>
@@ -73,15 +72,13 @@
         <br />
 
       </form>
-    </mat-card-content>
-  </mat-card>
-
+    
 
 
 
   <button class="mat-raised-button mat-primary" *ngIf="!updateMode" mat-raised-button (click)="save()" [disabled]="form.invalid">Add Staff</button>
   <button class="mat-raised-button mat-primary" *ngIf="updateMode" mat-raised-button (click)="save()" [disabled]="form.invalid">Update Staff</button>
-  <button class="mat-raised-button" (click)="close()">Close</button>
+  
 </div>
 
 <div *ngIf="viewMode">
@@ -131,15 +128,15 @@
         
                 </mat-input-container>
 
-                <mat-form-field class="col-sm-6" style="width:100%">
-                  df
+                <mat-form-field class="col-sm-6" >
+            
                     <mat-chip-list #chipList>
-                      <mat-chip *ngFor="let skill of skills" [selectable]="true"
-                               [removable]="true" (remove)="remove(fruit)">
-                        {{fruit.name}}
-                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                      <mat-chip [disabled]="true" color="accent" *ngFor="let skill of skills" [selectable]="selectable"
+                               [removable]="removable" (remove)="remove(skill)">
+                        {{skill}}
+                        
                       </mat-chip>
-                      <input placeholder="New fruit..."
+                      <input placeholder="Add skills"
                              [matChipInputFor]="chipList"
                              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                              [matChipInputAddOnBlur]="addOnBlur"
@@ -166,4 +163,5 @@
         <salary-list [staffId]="courseId"></salary-list>
       </mat-tab>
     </mat-tab-group>
+</div>
 </div>

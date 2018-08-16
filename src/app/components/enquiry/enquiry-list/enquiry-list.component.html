@@ -1,0 +1,15 @@
+
+<div class="row">
+  <branch-picker class="col-sm-3"  (select)="branchSelected($event)"> </branch-picker>
+  <course-picker class="col-sm-3"  (select)="courseSelected($event)"></course-picker>     
+  <mat-input-container class="col-sm-3">
+
+    <input matInput [matDatepicker]="picker1" placeholder="Date" id="examDate" name="examDate"
+      ngModel required [value]="date">
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+
+  </mat-input-container> 
+  
+  <button class="mat-raised-button mat-primary"  mat-raised-button (click)="search()" >Search</button>
+</div>

@@ -13,4 +13,7 @@ export class Student {
     registerNumber: string;
     tenantId: string;
     remarks: string;
+    mark: number;
+    branch: string;
+    course: string;
 }

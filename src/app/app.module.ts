@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/aniMations';
 import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatInputModule, MatSnackBarModule,
          MatToolbarModule, MatDialogModule, MatSidenavModule, MatNativeDateModule,
-         MatCardModule, MatTabsModule, MatIconModule, MatDatepickerModule, MatListModule, MatDividerModule, MatTableModule, MatTooltipModule, MatProgressSpinnerModule, MatAutocompleteModule, MatSelectModule, MatChipsModule } from '@angular/Material';
+         MatCardModule, MatTabsModule, MatIconModule, MatDatepickerModule, MatListModule, MatDividerModule, MatTableModule, MatTooltipModule, MatProgressSpinnerModule, MatAutocompleteModule, MatSelectModule, MatChipsModule, MatSlideToggleModule } from '@angular/Material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
@@ -59,7 +59,39 @@ import { BranchPickerComponent } from './components/common/branch-picker/branch-
 import { SalaryFormComponent } from './components/staff-details/salary-form/salary-form.component';
 import { SalaryListComponent } from './components/staff-details/salary-list/salary-list.component';
 import { AdminDashboardComponent } from './components/dashboards/admin-dashboard/admin-dashboard.component';
+import { AdminDashboardTopCardsComponent } from './components/dashboards/admin-dashboard-top-cards/admin-dashboard-top-cards.component';
 
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { MyTableComponent } from './components/my-table/my-table.component';
+​import { Ng2TableModule } from 'ng2-table/ng2-table';
+import { PaginationModule } from 'ng2-bootstrap/ng2-bootstrap'; 
+import { FeeMonthlyTrendComponent } from './components/students/fee-dashboard-items/fee-monthly-trend/fee-monthly-trend.component';
+import { PendingPaymentsComponent } from './components/students/fee-dashboard-items/pending-payments/pending-payments.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
+import { ExamListComponent } from './components/exam/exam-list/exam-list.component';
+import { ExamDetailsComponent } from './components/exam/exam-details/exam-details.component';
+import { StudentMarkRecorderComponent } from './components/exam/student-mark-recorder/student-mark-recorder.component';
+import { AttendanceRecorderComponent } from './components/attendance/attendance-recorder/attendance-recorder.component';
+import { AttendanceViewerComponent } from './components/attendance/attendance-viewer/attendance-viewer.component';
+import { EnquiryListComponent } from './components/enquiry/enquiry-list/enquiry-list.componen;
+import { EnquiryFormComponent } from './enquiry-form/enquiry-form.componen;
+import { EnquiryFormComponent } from './components/enquiry/enquiry-form/enquiry-form.component't't';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
+
+var firebaseConfig = {
+  apiKey: "AIzaSyD5AKEKgvkHKhlsBOCKKpQU5Tr7mTiSUvI",
+  authDomain: "user-management-da33b.firebaseapp.com",
+  databaseURL: "https://user-management-da33b.firebaseio.com",
+  projectId: "user-management-da33b",
+  storageBucket: "user-management-da33b.appspot.com",
+  messagingSenderId: "216819439593"
+};
 
 @NgModule({
   declarations: [
@@ -89,16 +121,32 @@ import { AdminDashboardComponent } from './components/dashboards/admin-dashboard
     SalaryFormComponent,
     SalaryListComponent,
     AdminDashboardComponent,
+    AdminDashboardTopCardsComponent,
+    MyTableComponent,
+    FeeMonthlyTrendComponent,
+    PendingPaymentsComponent,
+    NotificationsComponent,
+    ExamListComponent,
+    ExamDetailsComponent,
+    StudentMarkRecorderComponent,
+    AttendanceRecorderComponent,
+    AttendanceViewerComponent,
+    EnquiryListCompone,
+    EnquiryFormComponent,
+    EnquiryFormComponentnt,
     // routingComponents
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    Ng2TableModule,
+    PaginationModule.forRoot() ,
+    
     MatButtonModule, MatCheckboxModule, MatMenuModule, MatInputModule, MatSnackBarModule,
     MatToolbarModule, MatDialogModule, MatSidenavModule, MatNativeDateModule,
     MatDatepickerModule,MatDialogModule, MatListModule, MatDividerModule,MatTableModule,
     MatCardModule, MatTabsModule, MatIconModule, MatTooltipModule, MatProgressSpinnerModule,
-    MatAutocompleteModule,MatSelectModule,MatChipsModule,
+    MatAutocompleteModule,MatSelectModule,MatChipsModule, MatSlideToggleModule,
     FormsModule,
     NgxChartsModule,
     ReactiveFormsModule,
@@ -111,7 +159,9 @@ import { AdminDashboardComponent } from './components/dashboards/admin-dashboard
     BackgroundsModule,
     ProfileModule,
     MiscModule,
-    DataTablesModule
+    DataTablesModule,
+    PerfectScrollbarModule,
+    NgxDatatableModule
   ],
   providers: [
     UserService,
@@ -119,11 +169,16 @@ import { AdminDashboardComponent } from './components/dashboards/admin-dashboard
     AuthGuardService,
     AuthService,
     WindowService,
-    RestService
+    RestService,
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }
   ],
   bootstrap: [AppComponent],
   entryComponents: [ParentFormComponent,
-                    FeeFormComponent, InstallmentComponent, SalaryFormComponent]
+                    FeeFormComponent, InstallmentComponent, SalaryFormComponent,
+                  PendingPaymentsComponent]
 })
 export class AppModule {
 }

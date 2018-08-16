@@ -19,6 +19,8 @@ export class StudentViewComponent implements OnInit {
 
   studentId : string;
   student: Student;
+  attendance : any;
+  viewOnlyAbs = false;
   parent: Student;
   parentId: string;
   feeId: string;
@@ -63,7 +65,12 @@ export class StudentViewComponent implements OnInit {
           })
         }
         
-      })
+      });
+
+      this.restService.getData('students/'+this.studentId+'/attendance', (atnd) => {
+        this.attendance = atnd;
+        this.attendance.percentage = ((this.attendance.total -this.attendance.abs) / this.attendance.total)*100;
+      });
     });
   }
   addParent() {
@@ -109,4 +116,26 @@ export class StudentViewComponent implements OnInit {
       this.populateData();
     });
   }
+
+  print(): void {
+    let printContents, popupWin;
+    printContents = document.getElementById('fee-details').innerHTML;
+    popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+    popupWin.document.open();
+    popupWin.document.write(`
+      <html>
+        <head>
+          <title>Print tab</title>
+          <style>
+          //........Customized style.......
+          </style>
+        </head>
+    <body onload="window.print();window.close()">${printContents}</body>
+      </html>`
+    );
+    popupWin.document.close();
+}
+viewAbs() {
+  this.viewOnlyAbs = !this.viewOnlyAbs;
+}
 }

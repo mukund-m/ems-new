@@ -1,0 +1,36 @@
+<div style="padding-left: 3%">
+<h3 style="text-align: center">Students</h3>
+
+
+
+<div class="container" style="width:auto">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Mark</th>
+        <th>Correct Answers</th>
+        <th>InCorrect Answers</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students">
+        <td>{{student.data.name}}</td>
+        <td>{{student.data.registerNumber}}</td>
+        <td>
+            <input style="width:100px" class="form-control"  placeholder="Mark" type="number" [(ngModel)]="student?.data.mark" required>
+            </td>
+            <td>
+                <input style="width:100px" class="form-control"  placeholder="Correct Answers" type="number" [(ngModel)]="student?.data.mark" required>
+                </td>
+                <td>
+                    <input style="width:100px" class="form-control"  placeholder="Incorrecr Answers" type="number" [(ngModel)]="student?.data.mark" required>
+                    </td>
+      </tr> 
+      </tbody>
+      </table>
+      </div>
+
+<button class="mat-raised-button mat-primary" mat-raised-button (click)="addMark()">Add Marks</button>
+</div>

@@ -1,9 +1,8 @@
-<h2>Add Course</h2>
+<div style="padding-left:2%;padding-right:2%">
+  <h3  style="text-align:center" *ngIf="!updateMode">Add Course</h3>
+  <h3  style="text-align:center" *ngIf="updateMode">Update Course</h3>
 
 
-  <mat-card>
-
-    <mat-card-content>
       <form class="form row" [formGroup]="form">
         <mat-input-container class="col-sm-6">
           <input matInput formControlName="name" placeholder="Name" type="text" [value]="course?.name" required>
@@ -21,29 +20,45 @@
 
 
 
-        <mat-input-container class="col-sm-6">
+        <mat-input-container class="col-sm-3">
 
-          <input formControlName="startDate" matInput [matDatepicker]="picker1" placeholder="startDate" id="startDate" name="startDate"
+          <!-- <input formControlName="startDate" matInput [matDatepicker]="picker1" placeholder="startDate" id="startDate" name="startDate"
             ngModel required>
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-          <mat-datepicker #picker1></mat-datepicker>
+          <mat-datepicker #picker1></mat-datepicker> -->
 
+          <input type="number"  formControlName="durationMonths" matInput placeholder="Duration (Months)" id="durationMonths" name="durationMonths"
+            ngModel required> 
+           
+            
         </mat-input-container>
 
-        <mat-input-container class="col-sm-6">
+        <mat-input-container class="col-sm-3">
+            <input type="number"  formControlName="durationDays" matInput placeholder="Duration (Days)" id="durationDays" name="durationDays"
+              ngModel required> 
+          </mat-input-container>
+        <!-- <mat-input-container class="col-sm-6">
 
           <input formControlName="endDate" matInput [matDatepicker]="picker" placeholder="endDate" id="endDate" name="endDate"
             ngModel required>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
 
-        </mat-input-container>
+        </mat-input-container> -->
 
-        <div class="col-sm-6">
+        <div class="col-sm-3">
             <branch-picker class="col-sm-6" [selectedValue]="course?.branch" (select)="branchSelected($event)" class="col-sm-6"> </branch-picker>
             <input type="hidden" placeholder="Branch Mark"  formControlName="branch" required>      
         </div>
-        
+        <div class="col-sm-3">
+            <mat-slide-toggle
+          class="example-margin"
+          [color]="accent"  formControlName="active"
+          [(ngModel)]="active"
+          >
+        Active
+      </mat-slide-toggle>
+        </div>
         <mat-input-container class="col-sm-6">
           <textarea matInput formControlName="description" placeholder="description"  [value]="course?.description" ></textarea>
         </mat-input-container>
@@ -51,12 +66,11 @@
         <br />
 
       </form>
-    </mat-card-content>
-  </mat-card>
 
 
 
 
   <button class="mat-raised-button mat-primary" *ngIf="!updateMode" mat-raised-button (click)="save()" [disabled]="form.invalid">Add Course</button>
   <button class="mat-raised-button mat-primary" *ngIf="updateMode" mat-raised-button (click)="save()" [disabled]="form.invalid">Update Course</button>
-  <button class="mat-raised-button" (click)="close()">Close</button>
+  
+</div>

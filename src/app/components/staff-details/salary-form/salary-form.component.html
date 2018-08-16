@@ -11,13 +11,32 @@
 
          
         <mat-input-container class="col-sm-6">
-          <input matInput formControlName="month" placeholder="month" type="string" [value]="course?.month"
-            name="month" ngModel required>
+            <mat-select placeholder="Month" formControlName="month"> 
+                <mat-option value="January">January</mat-option>
+                <mat-option value="February">February</mat-option>
+                <mat-option value="March">March</mat-option>
+                <mat-option value="April">April</mat-option>
+                <mat-option value="May">May</mat-option>
+                <mat-option value="June">June</mat-option>
+                <mat-option value="July">July</mat-option>
+                <mat-option value="August">August</mat-option>
+                <mat-option value="September">September</mat-option>
+                <mat-option value="October">October</mat-option>
+                <mat-option value="November">November</mat-option>
+                <mat-option value="December">December</mat-option>
+              </mat-select>
+
+          
         </mat-input-container>
 
 
         <mat-input-container class="col-sm-6">
-          <input matInput formControlName="year" placeholder="year" type="text" [value]="course?.year" required>
+            <mat-select placeholder="Year" formControlName="year">
+                <mat-option *ngFor="let yr of years" [value]="yr">
+                  {{ yr }}
+                </mat-option>
+              </mat-select>
+          
         </mat-input-container>
 
         <mat-input-container class="col-sm-6">

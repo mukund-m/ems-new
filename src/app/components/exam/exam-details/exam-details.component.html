@@ -1,0 +1,63 @@
+<div style="padding-left:2%;padding-right:2%">
+  <h3 *ngIf="!updateMode" style="text-align:center">Add Exam</h3>
+  <h3 *ngIf="updateMode" style="text-align:center">Update Exam</h3>
+  
+        <form class="form row" [formGroup]="form">
+
+            <div class="col-sm-6">
+                <branch-picker class="col-sm-6" [selectedValue]="course?.branch" (select)="branchSelected($event)" class="col-sm-6"> </branch-picker>
+                  
+            </div>
+            <div class="col-sm-6">
+                <course-picker class="col-sm-6" [selectedValue]="course?.course" (select)="courseSelected($event)" class="col-sm-6"></course-picker> 
+            </div>
+            <input type="hidden" placeholder="Branch Mark"  formControlName="branch" required>
+                  <input type="hidden" placeholder="Course Mark"  formControlName="course" required>
+                  
+          <mat-input-container class="col-sm-6">
+            <input matInput formControlName="subject" placeholder="subject/course" type="text" [value]="course?.subject" required>
+          </mat-input-container>
+  
+           
+          <mat-input-container class="col-sm-6">
+            <input matInput formControlName="name" placeholder="name" type="string" [value]="course?.name"
+              name="name" ngModel required>
+          </mat-input-container>
+  
+          <mat-input-container class="col-sm-6">
+
+            <input formControlName="examDate" matInput [matDatepicker]="picker1" placeholder="examDate" id="examDate" name="examDate"
+              ngModel required>
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+  
+          </mat-input-container>
+  
+          <mat-input-container class="col-sm-6">
+            <input matInput formControlName="totalMarks" placeholder="totalMarks" type="number" [value]="course?.totalMarks" required>
+          </mat-input-container>
+  
+          <mat-input-container class="col-sm-6">
+            <input matInput formControlName="passMark" placeholder="passMark" type="number" [value]="course?.passMark" required>
+          </mat-input-container>
+  
+          <mat-input-container class="col-sm-6">
+            <textarea matInput formControlName="description" placeholder="description"  [value]="course?.description" ></textarea>
+          </mat-input-container>
+  
+          <br />
+  
+        </form>
+    
+  
+  
+  
+    <button class="mat-raised-button mat-primary" *ngIf="!updateMode" mat-raised-button (click)="save()" [disabled]="form.invalid">Add Exam</button>
+    <button class="mat-raised-button mat-primary" *ngIf="updateMode" mat-raised-button (click)="save()" [disabled]="form.invalid">Update Exam</button>
+    
+  </div>
+
+  <hr>
+
+  <student-mark-recorder *ngIf="dataReceived" 
+  [examId]="courseId" [branch]="course?.branch" [course]="course?.course" ></student-mark-recorder>

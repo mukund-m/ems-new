@@ -18,6 +18,19 @@ export class StudentComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
   dtOptions: DataTables.Settings = {};
   loading: boolean = false;
+
+  tableColumns = [
+    {title: 'Name', name: 'name', filtering: {filterString: '', placeholder: 'Filter by name'}},
+    {title: 'Register Number', name: 'registerNumber', filtering: {filterString: '', placeholder: 'Filter by regNo.'}},
+    {title: 'Phone', name: 'phone'},
+    {title: 'Branch', name: 'branch', filtering: {filterString: '', placeholder: 'Filter by name'}},
+    {title: 'Course', name: 'course', filtering: {filterString: '', placeholder: 'Filter by name'}},
+    {title: 'delete', className: 'cell-width', name: 'delete'},
+    {title: 'edit', className: 'cell-width', name: 'edit'}
+  ];
+
+  tableData = [
+    ];
   ngOnInit() {
     this.loadData();
   }
@@ -38,6 +51,14 @@ export class StudentComponent implements OnInit {
     this.loading = true;
     this.restService.getData('students', (data) => {
       this.students = data.items;
+      let tData = [];
+      for(let temp of data.items) {
+        temp.data.delete = '<button class="btn">Delete</button>'
+        temp.data.edit = '<button class="btn">Edit</button>'
+        temp.data.id = temp.id;
+        tData.push(temp.data);
+      }
+      this.tableData = tData;
       this.loading = false;
       this.dtTrigger.next();
       console.log(data);
@@ -45,7 +66,7 @@ export class StudentComponent implements OnInit {
   }
 
   delete(person) {
-    if (confirm('Are you sure you want to delete ' + person.data.name + '?')) {
+    if (confirm('Are you sure you want to delete ' + person.name + '?')) {
       this.loading = true;
       this.restService.delete('students/' + person.id, (data) => {
         this.loading = false;

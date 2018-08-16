@@ -41,6 +41,8 @@ export class StudentFormComponent implements OnInit {
         this.form.get('addressLine3').setValue(this.studentData.addressLine3);
         this.form.get('phone').setValue(this.studentData.phone);
         this.form.get('email').setValue(this.studentData.email);
+        this.form.get('branch').setValue(this.studentData.branch);
+        this.form.get('course').setValue(this.studentData.branch);
         this.form.get('joinedOn').setValue(this.studentData.joinedOn);
         this.form.get('registerNumber').setValue(this.studentData.registerNumber);
         this.form.get('remarks').setValue(this.studentData.remarks);

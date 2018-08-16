@@ -51,15 +51,58 @@
             <h1>{{summary?.noFeeInfoAvailable}}</h1>
         </mat-card-content>
     </mat-card>
-</div> -->
+</div> --> 
 
 <div class="col-sm-12">
-    <mat-card style="height: 200px">
+    <div>
 <ngx-charts-number-card [textColor]="white"
+        [view]="view"
       [scheme]="colorScheme"
       [results]="single"
       (select)="onSelect($event)">
     </ngx-charts-number-card>
-</mat-card>
+</div>
+</div>
+<div class="col-sm-12">
+<div class="col-sm-6">
+<fee-monthly-trend></fee-monthly-trend>
+</div>
+<div class="col-sm-6">
+        <h4> Monthwise Payments</h4>
+    <ngx-datatable
+        class="bootstrap"
+        [rows]="rows"
+        [loadingIndicator]="loadingIndicator"
+        [columns]="columns"
+        [columnMode]="'force'"
+        [headerHeight]="40"
+        [summaryRow]="true"
+        [summaryPosition]="'bottom'"
+        [footerHeight]="40"
+        [limit]="10"
+        [rowHeight]="'auto'"
+        [reorderable]="reorderable">
+      </ngx-datatable>
+
+
+      
+</div>
+</div>
+<div class="col-sm-6">
+    <h4>Current Month Payments</h4>
+    <ngx-datatable
+    class="bootstrap"
+    [rows]="studentFeeRows"
+    [loadingIndicator]="loadingIndicator"
+    [columns]="studentFeeColumns"
+    [columnMode]="'force'"
+    [headerHeight]="40"
+    [summaryRow]="true"
+    [summaryPosition]="'bottom'"
+    [footerHeight]="40"
+    [limit]="10"
+    [rowHeight]="'auto'"
+    [reorderable]="reorderable">
+  </ngx-datatable>
 </div>
     

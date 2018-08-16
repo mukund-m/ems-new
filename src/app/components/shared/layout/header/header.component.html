@@ -1,50 +1,69 @@
 <!-- Sidenav -->
 <mat-sidenav-container (backdropClick)="dropClicked()" class="container" >
 
-  <mat-sidenav style="min-height: 100vh;" (backdropClick)="dropClicked()" mode="over" opened="false" #sidenav class="sidenav">
-
+  <mat-sidenav style="min-height: 100vh;width:15%; background-color:#e9ecef" (backdropClick)="dropClicked()" mode="side" opened="true" #sidenav class="sidenav">
+    <perfect-scrollbar class="container" [config]="config">
   <img [src]="angularImage">
   
   <div class="menu-link">
-    <button mat-button routerLink="/home" (click)="sidenav.close()">
+    <button mat-button routerLink="/home" >
       <mat-icon class="home">home</mat-icon>
       <span>Home</span>
     </button>
 
-    <button mat-button routerLink="/about" (click)="sidenav.close()">
-      <mat-icon class="about">pageview</mat-icon>
-      <span>About</span>
-    </button>
+    
 
-    <button mat-button routerLink="/contact" (click)="sidenav.close()">
-      <mat-icon class="contact">email</mat-icon>
-      <span>Contact</span>
-    </button>
-
-    <button mat-button routerLink="/students" (click)="sidenav.close()">
+    <button mat-button routerLink="/students" >
       <mat-icon class="contact">email</mat-icon>
       <span>Students</span>
     </button>
-    <button mat-button routerLink="/courses" (click)="sidenav.close()">
+    <button mat-button routerLink="/courses" >
       <mat-icon class="contact">email</mat-icon>
       <span>Courses</span>
     </button>
-    <button mat-button routerLink="/staffs" (click)="sidenav.close()">
+    <button mat-button routerLink="/staffs" >
       <mat-icon class="contact">email</mat-icon>
       <span>Staffs</span>
     </button>
     
-    <button mat-button routerLink="/branches" (click)="sidenav.close()">
+    <button mat-button routerLink="/branches" >
       <mat-icon class="contact">email</mat-icon>
       <span>Branches</span>
     </button>
-    
-    <button mat-button routerLink="/fee-dashboard" (click)="sidenav.close()">
+    <button mat-button routerLink="/exams" >
+      <mat-icon class="contact">email</mat-icon>
+      <span>Exams</span>
+    </button>
+    <button mat-button routerLink="/enquriries" >
+      <mat-icon class="contact">email</mat-icon>
+      <span>Enquiry Roll</span>
+    </button>
+    <button mat-button routerLink="/attendance" >
+      <mat-icon class="contact">email</mat-icon>
+      <span>Attendance</span>
+    </button>
+    <button mat-button routerLink="/admin-dashboard" >
+      <mat-icon class="contact">email</mat-icon>
+      <span>Admin Dashboard</span>
+    </button>
+    <button mat-button routerLink="/fee-dashboard" >
       <mat-icon class="contact">email</mat-icon>
       <span>Fee Dashboard</span>
     </button>
+    <button mat-button routerLink="/notifications" >
+      <mat-icon class="contact">email</mat-icon>
+      <span>Notifications</span>
+    </button>
+    <button mat-button routerLink="/about" >
+      <mat-icon class="about">pageview</mat-icon>
+      <span>About</span>
+    </button>
 
-    <!-- <button mat-button routerLink="/misc" (click)="sidenav.close()">
+    <button mat-button routerLink="/contact" >
+      <mat-icon class="contact">email</mat-icon>
+      <span>Contact</span>
+    </button>
+    <!-- <button mat-button routerLink="/misc" >
       <mat-icon class="misc">burst_mode</mat-icon>
       <span>Misc</span>
     </button> -->
@@ -52,25 +71,25 @@
     <hr>
 
     <div *ngIf="!authService.isAuthenticated(); else logout">
-      <!-- <button mat-button routerLink="/signup" (click)="sidenav.close()">
+      <!-- <button mat-button routerLink="/signup" >
         <mat-icon class="signup">person_add</mat-icon>
         <span>Signup</span>
       </button> -->
 
-      <button mat-button routerLink="/login" (click)="sidenav.close()">
+      <button mat-button routerLink="/login" >
         <mat-icon class="login">lock_open</mat-icon>
         <span>Login</span>
       </button>
     </div>
 
     <ng-template #logout>          
-      <button mat-button (click)="onLogout()" (click)="sidenav.close()">
+      <button mat-button (click)="onLogout()" >
         <mat-icon class="logout">lock_outline</mat-icon>
         <span>Logout</span>
       </button>
     </ng-template>
   </div>
-
+</perfect-scrollbar>
 </mat-sidenav>
 
 <!-- Header -->
