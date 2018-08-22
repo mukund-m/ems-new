@@ -1,0 +1,78 @@
+<div id="center" style="position:fixed;top:50%;left:50%;z-index:10">
+  <mat-progress-spinner *ngIf="loading" class="example-margin" color="primary" mode="indeterminate">
+  </mat-progress-spinner>
+</div>
+
+<form style="padding-top: 3%;text-align: center" class="form row" [formGroup]="form">
+  <div class="row">
+    <branch-picker class="col-sm-3" (select)="branchSelected($event)"> </branch-picker>
+    <mat-input-container class="col-sm-3">
+
+      <input matInput [matDatepicker]="picker1" placeholder="Date" id="date" name="date" ngModel required formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+
+    </mat-input-container>
+    <button class="mat-raised-button mat-primary" [disabled]="form.invalid" mat-raised-button (click)="search()">Search</button>
+  </div>
+  <input type="hidden" placeholder="Branch Mark" formControlName="branch" required>
+
+</form>
+<div style="padding-left: 3%">
+
+  <span style="float: right;margin-right: 5%;" matTooltip="Select All" (click)="selectAll()">
+    <mat-icon style="cursor: pointer;">check_box</mat-icon>
+  </span>
+  <span style="float: right;margin-right: 5%;" matTooltip="View Only Absentees" *ngIf="!viewOnlyAbs" (click)="viewAbs()">
+    <mat-icon style="cursor: pointer;">visibility_off</mat-icon>
+  </span>
+  <span style="float: right;margin-right: 5%;" matTooltip="View All" *ngIf="viewOnlyAbs" (click)="viewAbs()">
+    <mat-icon style="cursor: pointer;">visibility</mat-icon>
+  </span>
+
+
+  <div class="container" style="width:auto">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Attendance</th>
+          <th>In Time</th>
+          <th>Out Time</th>
+          <th>Total Hours</th>
+          <th>Remark</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let student of students">
+          <tr *ngIf="viewOnlyAbs && !student.data.present || !viewOnlyAbs">
+
+            <td>{{student.data.name}}</td>
+            <td>{{student.data.registerNumber}}</td>
+            <td>
+              <mat-checkbox class="example-margin" [(ngModel)]="student.data.present"></mat-checkbox>
+            </td>
+            <td>
+                
+                    <input (click)="timeInChanged(student.data)" [value]="student.data.inTime" />
+                  
+            </td>
+            <td>
+                <input (click)="timeOutChanged(student.data)" [value]="student.data.outTime"  />
+            </td>
+
+            <td>
+              {{student.data.duration}}
+            </td>
+            <td>
+                <input style="width:100px" class="form-control"  placeholder="Remarks" type="text" [(ngModel)]="student?.data.remark" required>
+                </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+  <button class="mat-raised-button mat-primary" mat-raised-button (click)="addAttendance()">Save</button>
+</div>

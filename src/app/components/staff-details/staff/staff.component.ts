@@ -21,6 +21,7 @@ export class StaffComponent implements OnInit {
 
   form: FormGroup
   course: Staff;
+  attendance;
   courseId: string;
   skills: string[];
   updateMode: boolean = false;
@@ -65,6 +66,11 @@ export class StaffComponent implements OnInit {
         if(this.course.skills) {
           this.skills = this.course.skills;
         }
+
+        this.restService.getData('staff_attendance/'+this.courseId+'/attendance', (atnd) => {
+          this.attendance = atnd;
+          this.attendance.percentage = ((this.attendance.total -this.attendance.abs) / this.attendance.total)*100;
+        });
         
       })
     }

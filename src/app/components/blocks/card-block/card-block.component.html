@@ -1,4 +1,16 @@
-<div class="contentCard">
+<img *ngIf="!authService.isAuthenticated()" class="img-responsive" src="../../../../assets/img/home.jpg">
+<div *ngIf="!authService.isAuthenticated()" style="position: absolute;top:25%;left: 10%;background: url(../../../../assets/img/bglight.png) repeat center">
+  <div style="margin-top: 10px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;font-family: Montserrat , arial;
+  font-size: 40px;
+  color: #fff;">WELCOME TO ICS IT EDUCATION</div>
+<div style="line-height: 1.2;font-family: Montserrat , arial;
+font-size: 40px;
+color: #fff;">Committed to student success for over 10 years!</div>
+</div>
+<div *ngIf="authService.isAuthenticated()" class="contentCard">
     <div class="row">
         <div class="col-sm-4">
           <div class="tile purple" (click)="goto('students')">

@@ -3,6 +3,7 @@ import { RestService } from '../../shared/services/rest.service';
 import { Student, AlertService } from '../../shared';
 import { Subject } from 'rxjs/Subject';
 import { Router } from '@angular/router';
+import { ExportService } from '../../shared/services/export.service';
 
 @Component({
   selector: 'app-student',
@@ -13,6 +14,7 @@ export class StudentComponent implements OnInit {
 
   constructor(private restService: RestService,
     private router: Router,
+    private exportService: ExportService,
     private alertService: AlertService) { }
   students: Student[]
   dtTrigger: Subject<any> = new Subject();
@@ -79,6 +81,15 @@ export class StudentComponent implements OnInit {
       })
     }
 
+  }
+
+  download() {
+    let data:any = [{name:'NAME', phone: 'PHONE', email:'EMAIL'}];
+    for(let std of this.students) {
+      let std1:any = std;
+      data.push({name: std1.data.name, phone: std1.data.phone, email: std1.data.email});
+    }
+    this.exportService.export(data, 'students');
   }
 
 }

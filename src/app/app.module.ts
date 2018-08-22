@@ -76,9 +76,16 @@ import { ExamDetailsComponent } from './components/exam/exam-details/exam-detail
 import { StudentMarkRecorderComponent } from './components/exam/student-mark-recorder/student-mark-recorder.component';
 import { AttendanceRecorderComponent } from './components/attendance/attendance-recorder/attendance-recorder.component';
 import { AttendanceViewerComponent } from './components/attendance/attendance-viewer/attendance-viewer.component';
-import { EnquiryListComponent } from './components/enquiry/enquiry-list/enquiry-list.componen;
-import { EnquiryFormComponent } from './enquiry-form/enquiry-form.componen;
-import { EnquiryFormComponent } from './components/enquiry/enquiry-form/enquiry-form.component't't';
+import { EnquiryListComponent } from './components/enquiry/enquiry-list/enquiry-list.component';
+import { EnquiryFormComponent } from './components/enquiry/enquiry-form/enquiry-form.component';
+import { StaffAttendanceRecorderComponent } from './components/attendance/staff-attendance-recorder/staff-attendance-recorder.component';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
+import { MomentModule } from 'angular2-moment';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+import {AngularFireModule} from 'angularfire2';
+import {AngularFirestoreModule} from 'angularfire2/firestore';
+import { ExportService } from './components/shared/services/export.service';
+import { StudentService } from './components/shared/services/student.service';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -131,13 +138,16 @@ var firebaseConfig = {
     StudentMarkRecorderComponent,
     AttendanceRecorderComponent,
     AttendanceViewerComponent,
-    EnquiryListCompone,
+    EnquiryListComponent,
     EnquiryFormComponent,
-    EnquiryFormComponentnt,
+    EnquiryFormComponent,
+    StaffAttendanceRecorderComponent,
     // routingComponents
   ],
   imports: [
     BrowserModule,
+    MomentModule,
+    AmazingTimePickerModule,
     BrowserAnimationsModule,
     Ng2TableModule,
     PaginationModule.forRoot() ,
@@ -161,7 +171,11 @@ var firebaseConfig = {
     MiscModule,
     DataTablesModule,
     PerfectScrollbarModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(firebaseConfig, 'angularfs'),
+    AngularFirestoreModule
+    
   ],
   providers: [
     UserService,
@@ -169,6 +183,8 @@ var firebaseConfig = {
     AuthGuardService,
     AuthService,
     WindowService,
+    ExportService,
+    StudentService,
     RestService,
     {
       provide: PERFECT_SCROLLBAR_CONFIG,

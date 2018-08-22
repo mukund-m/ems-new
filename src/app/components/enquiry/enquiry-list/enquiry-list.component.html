@@ -1,15 +1,37 @@
+<button style="float:right;margin: 1%" class="mat-raised-button mat-primary"  mat-raised-button (click)="new()" >New Enquiry</button>
 
-<div class="row">
-  <branch-picker class="col-sm-3"  (select)="branchSelected($event)"> </branch-picker>
-  <course-picker class="col-sm-3"  (select)="courseSelected($event)"></course-picker>     
-  <mat-input-container class="col-sm-3">
 
-    <input matInput [matDatepicker]="picker1" placeholder="Date" id="examDate" name="examDate"
-      ngModel required [value]="date">
-    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-    <mat-datepicker #picker1></mat-datepicker>
-
-  </mat-input-container> 
-  
-  <button class="mat-raised-button mat-primary"  mat-raised-button (click)="search()" >Search</button>
-</div>
+<div style="padding-left:2%;padding-right:2%">
+  <div id ="center" style="position:fixed;top:50%;left:50%;z-index:10">
+      <mat-progress-spinner *ngIf="loading"
+              class="example-margin"
+              color="primary"
+              mode="indeterminate"
+              > 
+          </mat-progress-spinner>
+        </div>
+        
+      <br>
+      <!-- <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" style="cursor: pointer" class="row-border hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Branch Code</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let person of courses" >
+            <td (click)="openCourse(person)">{{ person.data.branchName }}</td>
+            <td (click)="openCourse(person)">{{ person.data.branchCode }}</td>
+           
+            <td><button mat-raised-button class="mat-raised mat-primary" (click)="edit(person)">Edit</button></td>
+            <td><button mat-raised-button class="mat-raised mat-warn" (click)="delete(person)">Delete</button></td>
+          </tr>
+        </tbody>
+        </table> -->
+        <my-table (delete)="delete($event)" (edit)="edit($event)" (rowSelected)="openStudent($event)"
+        [columns]="tableColumns"
+        [data]="tableData"
+        ></my-table>
+      </div>

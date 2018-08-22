@@ -12,7 +12,16 @@ export class HeaderComponent {
   title = '';
   isAuthenticated = false;
   angularImage: string;
-
+  isExpanded = true;
+  showSubmenu: boolean = false;
+  isShowing = false;
+  isExpanded1 = true;
+  showSubmenu1: boolean = false;
+  isShowing1 = false;
+  
+  expanded = false;
+  expanded1 = false;
+  mode = 'side';
   constructor(
     public authService: AuthService,
     private alertService: AlertService,
@@ -20,6 +29,9 @@ export class HeaderComponent {
     ) {
       this.isAuthenticated = this.authService.isAuthenticated(),
       this.angularImage = '/assets/img/angular2.jpg';
+      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        this.mode = 'over';
+      }
   }
 
   userUid() {

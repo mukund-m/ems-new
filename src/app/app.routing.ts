@@ -39,6 +39,8 @@ import { ExamDetailsComponent } from './components/exam/exam-details/exam-detail
 import { ExamListComponent } from './components/exam/exam-list/exam-list.component';
 import { AttendanceRecorderComponent } from './components/attendance/attendance-recorder/attendance-recorder.component';
 import { EnquiryListComponent } from './components/enquiry/enquiry-list/enquiry-list.component';
+import { StaffAttendanceRecorderComponent } from './components/attendance/staff-attendance-recorder/staff-attendance-recorder.component';
+import { EnquiryFormComponent } from './components/enquiry/enquiry-form/enquiry-form.component';
 
 // Routing
 const appRoutes: Routes = [
@@ -58,24 +60,26 @@ const appRoutes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
   { path: 'profile-settings', component: ProfileSettingsComponent, canActivate: [AuthGuardService] },
   { path: 'messages', component: MessagesComponent, canActivate: [AuthGuardService] },
-  { path: 'students', component: StudentComponent },
-  { path: 'student-view', component: StudentViewComponent },
-  { path: 'student-form', component: StudentFormComponent },
-  { path: 'fee-dashboard', component: FeeDashboardComponent },
-  { path: 'courses', component: CourseListComponent },
-  { path: 'course-form', component: CourseFormComponent },
+  { path: 'students', component: StudentComponent , canActivate: [AuthGuardService]},
+  { path: 'student-view', component: StudentViewComponent , canActivate: [AuthGuardService]},
+  { path: 'student-form', component: StudentFormComponent , canActivate: [AuthGuardService]},
+  { path: 'fee-dashboard', component: FeeDashboardComponent , canActivate: [AuthGuardService]},
+  { path: 'courses', component: CourseListComponent , canActivate: [AuthGuardService]},
+  { path: 'course-form', component: CourseFormComponent , canActivate: [AuthGuardService]},
   
-  { path: 'staffs', component: StaffListComponent },
-  { path: 'staff-form', component: StaffComponent },
-  { path: 'branches', component: BranchListComponent },
-  { path: 'exams', component: ExamListComponent },
+  { path: 'staffs', component: StaffListComponent, canActivate: [AuthGuardService] },
+  { path: 'staff-form', component: StaffComponent, canActivate: [AuthGuardService] },
+  { path: 'branches', component: BranchListComponent, canActivate: [AuthGuardService] },
+  { path: 'exams', component: ExamListComponent, canActivate: [AuthGuardService] },
   
-  { path: 'attendance', component: AttendanceRecorderComponent },
-  { path: 'exam-details', component: ExamDetailsComponent },
-  { path: 'branch-form', component: BranchFormComponent },
-  { path: 'admin-dashboard', component: AdminDashboardComponent },
-  { path: 'notifications', component: NotificationsComponent },
-  { path: 'enquriries', component: EnquiryListComponent },
+  { path: 'staff_attendance', component: StaffAttendanceRecorderComponent, canActivate: [AuthGuardService] },
+  { path: 'attendance', component: AttendanceRecorderComponent, canActivate: [AuthGuardService] },
+  { path: 'exam-details', component: ExamDetailsComponent, canActivate: [AuthGuardService] },
+  { path: 'branch-form', component: BranchFormComponent, canActivate: [AuthGuardService] },
+  { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuardService] },
+  { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuardService] },
+  { path: 'enquriries', component: EnquiryListComponent, canActivate: [AuthGuardService] },
+  { path: 'enquiry-form', component: EnquiryFormComponent, canActivate: [AuthGuardService] },
   { path: '**', component: PageNotFoundComponent }
 ];
 

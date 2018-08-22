@@ -1,171 +1,256 @@
 <!-- Sidenav -->
-<mat-sidenav-container (backdropClick)="dropClicked()" class="container" >
+<mat-sidenav-container (backdropClick)="dropClicked()" class="container">
 
-  <mat-sidenav style="min-height: 100vh;width:15%; background-color:#e9ecef" (backdropClick)="dropClicked()" mode="side" opened="true" #sidenav class="sidenav">
+  <mat-sidenav style="min-height: 100vh;width:19%; background-color:#e9ecef" (backdropClick)="dropClicked()" mode="side" opened="true"
+    #sidenav class="sidenav">
     <perfect-scrollbar class="container" [config]="config">
-  <img [src]="angularImage">
+      <img [src]="angularImage">
+      <button style="width: 100%" mat-button routerLink="/home">
+        <mat-icon class="home">home</mat-icon>
+        <span>Home</span>
+      </button>
+      <div *ngIf="authService.isAuthenticated();">
+      <a mat-list-item [ngStyle]="{'padding-left': (depth * 12) + 'px'}" (click)="expanded = !expanded">
+        <button mat-button style="width:100%;text-align: left">
+          <mat-icon class="contact">polymer</mat-icon>
+          <span>Office Management</span>
+          <mat-icon style="float: right;" *ngIf="!expanded" class="home">expand_more</mat-icon>
+          <mat-icon style="float: right;" *ngIf="expanded" class="home">expand_less</mat-icon>
+        </button>
+
+      </a>
+      <div *ngIf="expanded">
+          <button style="text-align: left;padding-left:12%;background-color: floralwhite;width: 100%" mat-button routerLink="/enquriries">
+            <mat-icon class="contact">perm_phone_msg</mat-icon>
+            <span>Enquiry Roll</span>
+          </button>
+        <button style="text-align: left;padding-left:12%;background-color: floralwhite;width: 100%" mat-button routerLink="/staffs">
+          <mat-icon class="contact">perm_identity</mat-icon>
+          <span>Staffs</span>
+        </button>
+
+        <button style="text-align: left;padding-left:12%;background-color: floralwhite;width: 100%" mat-button routerLink="/branches">
+          <mat-icon class="contact">email</mat-icon>
+          <span>Branches</span>
+        </button>
+      </div>
+
+      <!--Attendance-->
+      <a mat-list-item [ngStyle]="{'padding-left': (depth * 12) + 'px'}" (click)="expanded1 = !expanded1">
+          <button mat-button style="width:100%;text-align: left">
+            <mat-icon class="contact">person_pin</mat-icon>
+            <span>Attendance Management</span>
+            <mat-icon style="float: right;" *ngIf="!expanded" class="home">expand_more</mat-icon>
+            <mat-icon style="float: right;" *ngIf="expanded" class="home">expand_less</mat-icon>
+          </button>
   
-  <div class="menu-link">
-    <button mat-button routerLink="/home" >
-      <mat-icon class="home">home</mat-icon>
-      <span>Home</span>
-    </button>
+        </a>
+        <div *ngIf="expanded1">
+            <button style="text-align: left;padding-left:12%;background-color: floralwhite;width: 100%"  mat-button routerLink="/attendance">
+              <mat-icon class="contact">people_outline</mat-icon>
+              <span>Student Attendance</span>
+            </button>
+            <button style="text-align: left;padding-left:12%;background-color: floralwhite;width: 100%"  mat-button routerLink="/staff_attendance">
+              <mat-icon class="contact">person</mat-icon>
+              <span>Staff Attendance</span>
+            </button>
+        </div>
 
-    
 
-    <button mat-button routerLink="/students" >
-      <mat-icon class="contact">email</mat-icon>
-      <span>Students</span>
-    </button>
-    <button mat-button routerLink="/courses" >
-      <mat-icon class="contact">email</mat-icon>
-      <span>Courses</span>
-    </button>
-    <button mat-button routerLink="/staffs" >
-      <mat-icon class="contact">email</mat-icon>
-      <span>Staffs</span>
-    </button>
-    
-    <button mat-button routerLink="/branches" >
-      <mat-icon class="contact">email</mat-icon>
-      <span>Branches</span>
-    </button>
-    <button mat-button routerLink="/exams" >
-      <mat-icon class="contact">email</mat-icon>
-      <span>Exams</span>
-    </button>
-    <button mat-button routerLink="/enquriries" >
-      <mat-icon class="contact">email</mat-icon>
-      <span>Enquiry Roll</span>
-    </button>
-    <button mat-button routerLink="/attendance" >
-      <mat-icon class="contact">email</mat-icon>
-      <span>Attendance</span>
-    </button>
-    <button mat-button routerLink="/admin-dashboard" >
-      <mat-icon class="contact">email</mat-icon>
-      <span>Admin Dashboard</span>
-    </button>
-    <button mat-button routerLink="/fee-dashboard" >
-      <mat-icon class="contact">email</mat-icon>
-      <span>Fee Dashboard</span>
-    </button>
-    <button mat-button routerLink="/notifications" >
-      <mat-icon class="contact">email</mat-icon>
-      <span>Notifications</span>
-    </button>
-    <button mat-button routerLink="/about" >
-      <mat-icon class="about">pageview</mat-icon>
-      <span>About</span>
-    </button>
+      <!--Student Management-->
+      <a mat-list-item [ngStyle]="{'padding-left': (depth * 12) + 'px'}" (click)="expanded2 = !expanded2">
+          <button mat-button style="width:100%;text-align: left">
+            <mat-icon class="contact">wc</mat-icon>
+            <span>Student Management</span>
+            <mat-icon style="float: right;" *ngIf="!expanded" class="home">expand_more</mat-icon>
+            <mat-icon style="float: right;" *ngIf="expanded" class="home">expand_less</mat-icon>
+          </button>
+  
+        </a>
+        <div *ngIf="expanded2">
+            <button style="text-align: left;padding-left:12%;background-color: floralwhite;width: 100%"  mat-button routerLink="/students">
+              <mat-icon class="contact">list</mat-icon>
+              <span>Student List</span>
+            </button>
+            <button style="text-align: left;padding-left:12%;background-color: floralwhite;width: 100%"  mat-button routerLink="/staff_attendance">
+              <mat-icon class="contact">how_to_reg</mat-icon>
+              <span>Create Student</span>
+            </button>
+        </div>
 
-    <button mat-button routerLink="/contact" >
-      <mat-icon class="contact">email</mat-icon>
-      <span>Contact</span>
-    </button>
-    <!-- <button mat-button routerLink="/misc" >
+        <!--Exam Management-->
+      <a mat-list-item [ngStyle]="{'padding-left': (depth * 12) + 'px'}" (click)="expanded3 = !expanded3">
+          <button mat-button style="width:100%;text-align: left">
+            <mat-icon class="contact">create</mat-icon>
+            <span>Exam Management</span>
+            <mat-icon style="float: right;" *ngIf="!expanded" class="home">expand_more</mat-icon>
+            <mat-icon style="float: right;" *ngIf="expanded" class="home">expand_less</mat-icon>
+          </button>
+  
+        </a>
+        <div *ngIf="expanded3">
+            <button style="text-align: left;padding-left:12%;background-color: floralwhite;width: 100%"  mat-button routerLink="/exams">
+              <mat-icon class="contact">list</mat-icon>
+              <span>Exam List</span>
+            </button>
+            <button style="text-align: left;padding-left:12%;background-color: floralwhite;width: 100%"  mat-button routerLink="/staff_attendance">
+              <mat-icon class="contact">add_box</mat-icon>
+              <span>Create Exam</span>
+            </button>
+        </div>
+      </div>
+      <div class="menu-link">
+        
+
+        <div *ngIf="authService.isAuthenticated();">
+
+        <!-- <button mat-button routerLink="/students">
+          <mat-icon class="contact">email</mat-icon>
+          <span>Students</span>
+        </button> -->
+        <button mat-button routerLink="/courses">
+          <mat-icon class="contact">add_to_queue</mat-icon>
+          <span>Courses</span>
+        </button>
+        <!-- <button mat-button routerLink="/staffs">
+          <mat-icon class="contact">email</mat-icon>
+          <span>Staffs</span>
+        </button> -->
+
+        <!-- <button mat-button routerLink="/branches">
+          <mat-icon class="contact">email</mat-icon>
+          <span>Branches</span>
+        </button> -->
+        <!-- <button mat-button routerLink="/exams">
+          <mat-icon class="contact">email</mat-icon>
+          <span>Exams</span>
+        </button> -->
+        <!-- <button mat-button routerLink="/enquriries">
+          <mat-icon class="contact">email</mat-icon>
+          <span>Enquiry Roll</span>
+        </button> -->
+        <!-- <button mat-button routerLink="/attendance">
+          <mat-icon class="contact">email</mat-icon>
+          <span>Attendance</span>
+        </button>
+        <button mat-button routerLink="/staff_attendance">
+          <mat-icon class="contact">email</mat-icon>
+          <span>Staff Attendance</span>
+        </button> -->
+        <button mat-button routerLink="/admin-dashboard">
+          <mat-icon class="contact">dns</mat-icon>
+          <span>Admin Dashboard</span>
+        </button>
+        <button mat-button routerLink="/fee-dashboard">
+          <mat-icon class="contact">dashboard</mat-icon>
+          <span>Fee Dashboard</span>
+        </button>
+        <button mat-button routerLink="/notifications">
+          <mat-icon class="contact">notification_important</mat-icon>
+          <span>Notifications</span>
+        </button>
+        <button mat-button routerLink="/about">
+          <mat-icon class="about">pageview</mat-icon>
+          <span>About</span>
+        </button>
+
+        <button mat-button routerLink="/contact">
+          <mat-icon class="contact">email</mat-icon>
+          <span>Contact</span>
+        </button>
+        <!-- <button mat-button routerLink="/misc" >
       <mat-icon class="misc">burst_mode</mat-icon>
       <span>Misc</span>
     </button> -->
+      </div>
 
-    <hr>
-
-    <div *ngIf="!authService.isAuthenticated(); else logout">
-      <!-- <button mat-button routerLink="/signup" >
+        <div *ngIf="!authService.isAuthenticated(); else logout">
+          <!-- <button mat-button routerLink="/signup" >
         <mat-icon class="signup">person_add</mat-icon>
         <span>Signup</span>
       </button> -->
 
-      <button mat-button routerLink="/login" >
-        <mat-icon class="login">lock_open</mat-icon>
-        <span>Login</span>
+          <button mat-button routerLink="/login">
+            <mat-icon class="login">lock_open</mat-icon>
+            <span>Login</span>
+          </button>
+        </div>
+
+        <ng-template #logout>
+          <button mat-button (click)="onLogout()">
+            <mat-icon class="logout">lock_outline</mat-icon>
+            <span>Logout</span>
+          </button>
+        </ng-template>
+      </div>
+    </perfect-scrollbar>
+  </mat-sidenav>
+
+  <!-- Header -->
+  <mat-toolbar color="primary">
+    <!-- Sidenav activate -->
+    <div class="sidenav-content" style="min-height:100vh">
+      <button type="button" mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
       </button>
     </div>
 
-    <ng-template #logout>          
-      <button mat-button (click)="onLogout()" >
-        <mat-icon class="logout">lock_outline</mat-icon>
-        <span>Logout</span>
-      </button>
-    </ng-template>
-  </div>
-</perfect-scrollbar>
-</mat-sidenav>
+    <span>
+      <a href="/">
+        <app-titlecase-pipe></app-titlecase-pipe>
+      </a>
+    </span>
 
-<!-- Header -->
-<mat-toolbar color="primary">
-  <!-- Sidenav activate -->
-  <div class="sidenav-content" style="min-height:100vh">
-    <button type="button" mat-icon-button (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-    </button>
-  </div>     
 
-  <span><a href="/"><app-titlecase-pipe></app-titlecase-pipe></a></span>
-  
- 
-  <!-- Menu -->
-  <span class="spacer"></span>
+    <!-- Menu -->
+    <span class="spacer"></span>
 
-  <div *ngIf="!authService.isAuthenticated();">
-    <app-date-pipe></app-date-pipe>
-  </div>
+    <div *ngIf="!authService.isAuthenticated();">
+      <app-date-pipe></app-date-pipe>
+    </div>
 
-  <span class="spacer-light"></span>
+    <span class="spacer-light"></span>
 
     <div *ngIf="!authService.isAuthenticated(); else loggedin">
       <!-- <a routerLink="/signup"><mat-icon>person_add</mat-icon></a> -->
-      <a routerLink="/login"><mat-icon>lock_open</mat-icon></a>
+      <a routerLink="/login">
+        <mat-icon>lock_open</mat-icon>
+      </a>
     </div>
 
     <ng-template #loggedin>
-        <h4>(User: {{userEmail()}})</h4>
-       
-        <button mat-icon-button [matMenuTriggerFor]="menu">
+      <h4>(User: {{userEmail()}})</h4>
+
+      <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
-        </button>
-        
-        <mat-menu #menu="matMenu" >
-          
-          <!-- [routerLink]="['/profile', userUid(), userName()]" -->
-          <a 
-            mat-menu-item 
-            routerLink="/profile" 
-            [queryParams]="{profile: '1'}" >
-            <mat-icon class="profile">face</mat-icon>
-            <span>Profile</span>
-          </a>
-          
-          <!--
+      </button>
+
+      <mat-menu #menu="matMenu">
+
+        <!-- [routerLink]="['/profile', userUid(), userName()]" -->
+        <a mat-menu-item routerLink="/profile" [queryParams]="{profile: '1'}">
+          <mat-icon class="profile">face</mat-icon>
+          <span>Profile</span>
+        </a>
+
+        <!--
           <a mat-menu-item routerLink="/messages">
             <mat-icon class="messages">chat</mat-icon>
             <span>Messages</span>
           </a>
           -->
 
-          <a mat-menu-item *ngFor="let item of menuItems" href="{{item.link}}">
-            <mat-icon class="login">{{item.icon}}</mat-icon>
-            <span>{{item.title}}</span>
-          </a>
+        
 
-          <a 
-            mat-menu-item 
-            routerLink="/profile-settings" 
-            [queryParams]="{profile: '1'}" 
-            fragment="editProfile">
-            <mat-icon class="settings">settings</mat-icon>
-            <span>Settings</span>
-          </a>
+        <a mat-menu-item (click)="onLogout()">
+          <mat-icon class="logout">lock_outline</mat-icon>
+          <span>Logout</span>
+        </a>
+      </mat-menu>
 
-          <a mat-menu-item (click)="onLogout()">
-            <mat-icon class="logout">lock_outline</mat-icon>
-            <span>Logout</span>
-          </a>
-        </mat-menu> 
-
-      </ng-template>
-</mat-toolbar>
-<!-- 
+    </ng-template>
+  </mat-toolbar>
+  <!-- 
 <mat-tab-group>
   <mat-tab label="COMP">
   </mat-tab>
@@ -196,8 +281,8 @@
   </mat-tab>
 
 </mat-tab-group> -->
-<router-outlet></router-outlet>
-<div id="messages"> </div>
-<div id="users"> </div>
-<div id="touch"> </div>
+  <router-outlet></router-outlet>
+  <div id="messages"> </div>
+  <div id="users"> </div>
+  <div id="touch"> </div>
 </mat-sidenav-container>

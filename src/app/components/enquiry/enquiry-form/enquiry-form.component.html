@@ -1,3 +1,60 @@
-<p>
-  enquiry-form works!
-</p>
+<div style="padding-left:2%;padding-right:2%">
+  <h3 *ngIf="!updateMode" style="text-align:center">Add Enquiry</h3>
+  <h3 *ngIf="updateMode" style="text-align:center">Update Enquiry</h3>
+  
+        <form class="form row" [formGroup]="form">
+
+            <div class="col-sm-6">
+                <branch-picker class="col-sm-6" [selectedValue]="course?.branch" (select)="branchSelected($event)" class="col-sm-6"> </branch-picker>
+                  
+            </div>
+            <mat-form-field class="col-sm-6"  >
+              <mat-select formControlName="category" placeholder="Category" >
+                <mat-option value="Course">Course enquiry</mat-option>
+                <mat-option value="Fee">Fee enquiry</mat-option>
+                <mat-option value="Duration">Duration enquiry</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+
+          <mat-input-container class="col-sm-6">
+            <input matInput formControlName="phoneNumber" placeholder="Phone Number" type="text" [value]="course?.phoneNumber" required>
+          </mat-input-container>
+  
+          <mat-input-container class="col-sm-6">
+            <input matInput formControlName="email" placeholder="Email" type="email" [value]="course?.email" required>
+          </mat-input-container>
+
+          <mat-input-container class="col-sm-6">
+            <input matInput formControlName="question" placeholder="question" type="text" [value]="course?.question" required>
+          </mat-input-container>
+
+          <mat-checkbox class="col-sm-6"  [(ngModel)]="enq.shouldFollowUp">Should Follow Up?</mat-checkbox>
+          <mat-input-container class="col-sm-6">
+
+            <input formControlName="followUpDate" matInput [matDatepicker]="picker1" placeholder="followUpDate" id="followUpDate" name="followUpDate"
+              ngModel required>
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+  
+          </mat-input-container>
+  
+          
+          <mat-input-container class="col-sm-6">
+            <textarea matInput formControlName="answer" placeholder="answer"  [value]="course?.answer" ></textarea>
+          </mat-input-container>
+
+          <mat-input-container class="col-sm-6">
+            <input matInput placeholder="created date" disabled type="text" [value]="course?.createdDate" required>
+          </mat-input-container>
+          <br />
+  
+        </form>
+    
+  
+  
+  
+    <button class="mat-raised-button mat-primary" *ngIf="!updateMode" mat-raised-button (click)="save()" [disabled]="form.invalid">Add Enquiry</button>
+    <button class="mat-raised-button mat-primary" *ngIf="updateMode" mat-raised-button (click)="save()" [disabled]="form.invalid">Update Exam</button>
+    
+  </div>

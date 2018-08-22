@@ -4,6 +4,8 @@ import * as firebase from 'firebase';
 
 import { AlertService } from './alert.service';
 import { UserService } from './user.service';
+import { AngularFireAuth } from '../../../../../node_modules/angularfire2/auth';
+import { AngularFirestore } from '../../../../../node_modules/angularfire2/firestore';
 
 @Injectable()
 export class AuthService {
@@ -12,6 +14,8 @@ export class AuthService {
     constructor(
         private router: Router,
         private alertService: AlertService,
+        private afAuth: AngularFireAuth,
+        private afs: AngularFirestore,
         private userService: UserService) { }
 
     // Signup/register
@@ -196,6 +200,9 @@ export class AuthService {
     }
 
     signinUser(email: string, password: string) {
+        this.afAuth.auth.signInWithEmailAndPassword(email,password).then( (value) => {
+            
+        })
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(
                 response => {
@@ -209,7 +216,8 @@ export class AuthService {
                 }
             )
             .catch(
-                error => console.log(error)
+                error =>{ console.log(error); this.alertService.showToaster('Login Failed');}
+                
             );
     }
 

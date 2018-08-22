@@ -162,6 +162,65 @@
         <button class="mat-raised-button mat-primary"  mat-raised-button (click)="addSalary()" [disabled]="form.invalid">Add Salary</button>
         <salary-list [staffId]="courseId"></salary-list>
       </mat-tab>
+
+      <mat-tab label="Attendance Details">
+        
+          <mat-card id="fee-details" class="col-sm-11 mat-elevation-z8" style="margin: 1%" >
+              <mat-card-content>
+                <table>
+                  <tr>
+                    <td>Total Classes : </td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <mat-form-field>
+                    <input style="font-weight: bold;font-size: 2em" matInput disabled [value]="attendance?.total">
+                    </mat-form-field>
+                    </td>
+                    <td>Total Attendance : </td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <mat-form-field>
+                    <input style="font-weight: bold;font-size: 2em" matInput disabled [value]="attendance?.total - attendance?.abs">
+                    </mat-form-field>
+                    </td>
+                    <td>Percentage : </td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <mat-form-field>
+                    <input style="font-weight: bold;font-size: 2em" matInput disabled [value]="attendance?.percentage">
+                    </mat-form-field>
+                    </td>
+                  </tr>
+                </table>
+                <span style="float: right;margin-right: 5%;" matTooltip="View Only Absentees" *ngIf="!viewOnlyAbs" (click)="viewAbs()"><mat-icon style="cursor: pointer;" >visibility_off</mat-icon></span>
+                <span style="float: right;margin-right: 5%;" matTooltip="View All" *ngIf="viewOnlyAbs" (click)="viewAbs()"><mat-icon style="cursor: pointer;" >visibility</mat-icon></span>
+                
+                <div class="container" style="width:auto">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>Date</th>
+                          <th>Attendance</th>
+                          <th>Remark</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          <ng-container *ngFor="let item of attendance.list" >
+                        <tr *ngIf="viewOnlyAbs && !item.present || !viewOnlyAbs">
+                          
+                          <td>{{item.date}}</td>
+                          <td>
+                            <mat-checkbox disabled class="example-margin" [(ngModel)]="item.present"></mat-checkbox>
+                              </td>
+                              <td>
+                                  <input  style="width:100px" class="form-control"  placeholder="Remarks" type="text" [(ngModel)]="item.remark" required>
+                                  </td>
+                                
+                        </tr>
+                      </ng-container>
+                        </tbody>
+                        </table>
+                        </div>
+              </mat-card-content>
+          </mat-card>
+        </mat-tab>
     </mat-tab-group>
 </div>
 </div>
