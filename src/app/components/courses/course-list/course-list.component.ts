@@ -15,8 +15,7 @@ export class CourseListComponent implements OnInit {
     private router: Router,
     private alertService: AlertService) { }
   courses: Course[];
-  dtTrigger: Subject<any> = new Subject();
-  dtOptions: DataTables.Settings = {};
+  
   loading: boolean = false;
   tableColumns = [
     {title: 'Name', name: 'name', filtering: {filterString: '', placeholder: 'Filter by name'}},
@@ -52,7 +51,6 @@ export class CourseListComponent implements OnInit {
     this.restService.getData('courses', (data) => {
       this.courses = data.items;
       this.loading = false;
-      this.dtTrigger.next();
       let tData = [];
       for(let temp of data.items) {
         temp.data.delete = '<button class="btn">Delete</button>'

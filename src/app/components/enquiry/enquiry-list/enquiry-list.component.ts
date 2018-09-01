@@ -15,9 +15,7 @@ export class EnquiryListComponent implements OnInit {
     private router: Router,
     private alertService: AlertService) { }
   courses: Exam[];
-  dtTrigger: Subject<any> = new Subject();
-  dtOptions: DataTables.Settings = {};
-  loading: boolean = false;
+    loading: boolean = false;
 
   tableColumns = [
     {title: 'Branch', name: 'branch', filtering: {filterString: '', placeholder: 'Filter by branch'}},
@@ -51,7 +49,6 @@ export class EnquiryListComponent implements OnInit {
     this.restService.getData('enquiries', (data) => {
       this.courses = data.items;
       this.loading = false;
-      this.dtTrigger.next();
       let tData = [];
       for(let temp of data.items) {
         temp.data.delete = '<button class="btn">Delete</button>'

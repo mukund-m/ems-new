@@ -1,4 +1,5 @@
 export class Fee {
+    FSKey: string;
     totalAmount: number;
     payedAmount: number;
     balance: number;

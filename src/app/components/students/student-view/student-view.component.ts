@@ -8,6 +8,7 @@ import { FeeFormComponent } from 'app/components/students/fee-form/fee-form.comp
 import { Router } from '@angular/router';
 import { InstallmentComponent } from 'app/components/students/installment/installment.component';
 import {MatTableDataSource} from '@angular/material';
+import { StudentService } from '../../shared/services/student.service';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class StudentViewComponent implements OnInit {
 
   constructor(private route:ActivatedRoute,
               private router: Router,
+              private studentService: StudentService,
               private restService: RestService,
               private dialog: MatDialog) { }
 
@@ -42,36 +44,48 @@ export class StudentViewComponent implements OnInit {
   private populateData() {
     this.loading = true;
     this.studentId = this.route.snapshot.params['id'];
-    this.restService.getData('students/'+this.studentId, (data)=>{
-      this.student = data.item;
-      this.restService.getData('students/'+this.studentId+'/parent', (parent) => {
-        if(parent.items && parent.items.length>0) {
-          this.parent = parent.items[0].data;
-          this.parentId = parent.items[0].id;
-                    
-        }
-        
-      });
-      this.restService.getData('students/'+this.studentId+'/fee', (parent) => {
-        this.loading = false;
-        if(parent.items && parent.items.length>0) {
-          this.fee = parent.items[0].data;
-          this.feeId = parent.items[0].id;
+    this.studentService.getParent(this.studentId).subscribe ((parents) => {
+      if(parents.length > 0) {
+        this.parent = parents[0];
+        this.parentId = parents[0].FSKey;
+      }
+    })
+
+    this.studentService.getFees(this.studentId).subscribe ((fees) => {
+      if(fees.length>0) {
+        this.fee = fees[0];
+        this.feeId = fees[0].FSKey;
+        this.studentService.getInstallments(this.studentId, this.feeId).subscribe( (insts) => {
+          this.installments = insts;
+          this.dataSource = new MatTableDataSource(this.installments);
+          this.loading = false;
           
-          this.restService.getData('students/'+this.studentId+'/fee/'+this.feeId+'/installemnent', (data)=>{
-            this.installments = data.items;
-            this.dataSource = new MatTableDataSource(this.installments);
-            this.loading = false;
-          })
-        }
-        
-      });
+          let total = this.fee.totalAmount;
+          let payedAmnt = 0;
+          if(this.fee.dueAmount) {
+            total = total + this.fee.dueAmount;
+          }
+          if(this.fee.advanceAmount) {
+            payedAmnt = payedAmnt + this.fee.advanceAmount;
+          }
+          for(let inst of insts) {
+            payedAmnt = payedAmnt + inst.amount;
+          }
+          this.fee.payedAmount = payedAmnt;
+          this.fee.balance = total - payedAmnt;
+
+        })
+      }
+    })
+    this.studentService.getStudent(this.studentId).subscribe( (std) => {
+      this.student = std;
 
       this.restService.getData('students/'+this.studentId+'/attendance', (atnd) => {
         this.attendance = atnd;
         this.attendance.percentage = ((this.attendance.total -this.attendance.abs) / this.attendance.total)*100;
       });
-    });
+    })
+   
   }
   addParent() {
     const dialogConfig = new MatDialogConfig();

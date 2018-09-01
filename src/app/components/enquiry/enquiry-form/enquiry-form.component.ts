@@ -15,7 +15,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class EnquiryFormComponent implements OnInit {
 
-  enq = {};
+  enq: any = {};
   form: FormGroup
   course;
   dataReceived: boolean = false;

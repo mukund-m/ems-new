@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RestService } from '../../shared/services/rest.service';
 import { Student, AlertService } from '../../shared';
 import { Subject } from 'rxjs/Subject';
 import { Router } from '@angular/router';
 import { ExportService } from '../../shared/services/export.service';
+import { StudentService } from '../../shared/services/student.service';
+import { Subscription } from '../../../../../node_modules/rxjs';
 
 @Component({
   selector: 'app-student',
@@ -14,13 +16,13 @@ export class StudentComponent implements OnInit {
 
   constructor(private restService: RestService,
     private router: Router,
+    private studentService: StudentService,
     private exportService: ExportService,
     private alertService: AlertService) { }
   students: Student[]
-  dtTrigger: Subject<any> = new Subject();
-  dtOptions: DataTables.Settings = {};
+ 
   loading: boolean = false;
-
+    subscription: Subscription;
   tableColumns = [
     {title: 'Name', name: 'name', filtering: {filterString: '', placeholder: 'Filter by name'}},
     {title: 'Register Number', name: 'registerNumber', filtering: {filterString: '', placeholder: 'Filter by regNo.'}},
@@ -37,6 +39,10 @@ export class StudentComponent implements OnInit {
     this.loadData();
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
   addStudent() {
     this.router.navigate(['student-form']);
   }
@@ -51,20 +57,33 @@ export class StudentComponent implements OnInit {
 
   loadData() {
     this.loading = true;
-    this.restService.getData('students', (data) => {
-      this.students = data.items;
+    this.subscription = this.studentService.getStudents().subscribe( (data: Student[]) => {
+      this.students = data;
       let tData = [];
-      for(let temp of data.items) {
-        temp.data.delete = '<button class="btn">Delete</button>'
-        temp.data.edit = '<button class="btn">Edit</button>'
-        temp.data.id = temp.id;
-        tData.push(temp.data);
+      for(let std1 of data) {
+        let std: any = std1;
+        std.delete = '<button class="btn">Delete</button>'
+        std.edit = '<button class="btn">Edit</button>'
+        std.id = std1.FSKey;
+        tData.push(std);
       }
       this.tableData = tData;
       this.loading = false;
-      this.dtTrigger.next();
-      console.log(data);
-    })
+    } )
+    // this.restService.getData('students', (data) => {
+    //   this.students = data.items;
+    //   let tData = [];
+    //   for(let temp of data.items) {
+    //     temp.data.delete = '<button class="btn">Delete</button>'
+    //     temp.data.edit = '<button class="btn">Edit</button>'
+    //     temp.data.id = temp.id;
+    //     tData.push(temp.data);
+    //   }
+    //   this.tableData = tData;
+    //   this.loading = false;
+    //   this.dtTrigger.next();
+    //   console.log(data);
+    // })
   }
 
   delete(person) {
@@ -86,8 +105,7 @@ export class StudentComponent implements OnInit {
   download() {
     let data:any = [{name:'NAME', phone: 'PHONE', email:'EMAIL'}];
     for(let std of this.students) {
-      let std1:any = std;
-      data.push({name: std1.data.name, phone: std1.data.phone, email: std1.data.email});
+      data.push({name: std.name, phone: std.phone, email: std.email});
     }
     this.exportService.export(data, 'students');
   }

@@ -8,10 +8,10 @@ import { AuthService } from '../../shared';
   styleUrls: ['./card-block.component.scss']
 })
 export class CardBlockComponent {
-
+ authService: AuthService;
   constructor(private router: Router,
-  private authService: AuthService) {
-
+  private authServiceTemp: AuthService) {
+    this.authService = authServiceTemp;
   }
 
   goto(route) {

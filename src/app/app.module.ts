@@ -16,7 +16,7 @@ import { AuthModule } from './components/auth/auth.module';
 import { BackgroundsModule } from './components/backgrounds/backgrounds.module';
 import { ProfileModule } from './components/profile/profile.module';
 import { MiscModule } from './components/misc/misc.module';
-import { DataTablesModule } from 'angular-datatables';
+
 // Shared
 import {
   FooterComponent,
@@ -67,7 +67,7 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { MyTableComponent } from './components/my-table/my-table.component';
 ​import { Ng2TableModule } from 'ng2-table/ng2-table';
-import { PaginationModule } from 'ng2-bootstrap/ng2-bootstrap'; 
+import { PaginationModule } from 'ngx-bootstrap/pagination'
 import { FeeMonthlyTrendComponent } from './components/students/fee-dashboard-items/fee-monthly-trend/fee-monthly-trend.component';
 import { PendingPaymentsComponent } from './components/students/fee-dashboard-items/pending-payments/pending-payments.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
@@ -169,7 +169,6 @@ var firebaseConfig = {
     BackgroundsModule,
     ProfileModule,
     MiscModule,
-    DataTablesModule,
     PerfectScrollbarModule,
     NgxDatatableModule,
     AngularFireAuthModule,

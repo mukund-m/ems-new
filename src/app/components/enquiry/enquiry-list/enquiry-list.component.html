@@ -12,25 +12,7 @@
         </div>
         
       <br>
-      <!-- <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" style="cursor: pointer" class="row-border hover">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Branch Code</th>
-           
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let person of courses" >
-            <td (click)="openCourse(person)">{{ person.data.branchName }}</td>
-            <td (click)="openCourse(person)">{{ person.data.branchCode }}</td>
-           
-            <td><button mat-raised-button class="mat-raised mat-primary" (click)="edit(person)">Edit</button></td>
-            <td><button mat-raised-button class="mat-raised mat-warn" (click)="delete(person)">Delete</button></td>
-          </tr>
-        </tbody>
-        </table> -->
-        <my-table (delete)="delete($event)" (edit)="edit($event)" (rowSelected)="openStudent($event)"
+        <my-table (delete)="delete($event)" (edit)="edit($event)" 
         [columns]="tableColumns"
         [data]="tableData"
         ></my-table>

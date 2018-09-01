@@ -15,8 +15,6 @@ export class StaffListComponent implements OnInit {
     private router: Router,
     private alertService: AlertService) { }
   courses: Course[];
-  dtTrigger: Subject<any> = new Subject();
-  dtOptions: DataTables.Settings = {};
   loading: boolean = false;
 
   tableColumns = [
@@ -51,7 +49,7 @@ export class StaffListComponent implements OnInit {
     this.restService.getData('staffs', (data) => {
       this.courses = data.items;
       this.loading = false;
-      this.dtTrigger.next();
+      
       let tData = [];
       for(let temp of data.items) {
         temp.data.delete = '<button class="btn">Delete</button>'

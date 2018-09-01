@@ -17,7 +17,7 @@ export class ExamListComponent implements OnInit {
     private alertService: AlertService) { }
   courses: Exam[];
   dtTrigger: Subject<any> = new Subject();
-  dtOptions: DataTables.Settings = {};
+  
   loading: boolean = false;
 
   tableColumns = [

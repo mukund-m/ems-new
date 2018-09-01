@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import * as firebase from 'firebase';
 
 import { AuthService, AlertService, UserService } from '../../services';
+import { MatSidenav } from '@angular/Material';
 
 @Component({
   selector: 'app-header',
@@ -22,6 +23,8 @@ export class HeaderComponent {
   expanded = false;
   expanded1 = false;
   mode = 'side';
+  width = '19%';
+  @ViewChild('sidenav') public sidenav: MatSidenav;
   constructor(
     public authService: AuthService,
     private alertService: AlertService,
@@ -31,6 +34,7 @@ export class HeaderComponent {
       this.angularImage = '/assets/img/angular2.jpg';
       if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         this.mode = 'over';
+        this.width = '70%';
       }
   }
 
@@ -66,4 +70,8 @@ export class HeaderComponent {
       link: 'https://github.com/jeroenouw/AngularMaterialFirebase'
     },
   ];
+
+  closeSideNav(){
+    if(this.mode == 'over') {this.sidenav.toggle()}
+  }
 }

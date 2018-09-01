@@ -15,13 +15,11 @@ export class BranchListComponent implements OnInit {
     private router: Router,
     private alertService: AlertService) { }
   courses: Course[];
-  dtTrigger: Subject<any> = new Subject();
-  dtOptions: DataTables.Settings = {};
   loading: boolean = false;
 
   tableColumns = [
     {title: 'Name', name: 'branchName', filtering: {filterString: '', placeholder: 'Filter by name'}},
-    {title: 'Phone number', name: 'branchCode'},
+    {title: 'Branch Code', name: 'branchCode'},
     {title: 'delete', className: 'cell-width', name: 'delete'},
     {title: 'edit', className: 'cell-width', name: 'edit'}
   ];
@@ -50,7 +48,7 @@ export class BranchListComponent implements OnInit {
     this.restService.getData('branches', (data) => {
       this.courses = data.items;
       this.loading = false;
-      this.dtTrigger.next();
+      
       let tData = [];
       for(let temp of data.items) {
         temp.data.delete = '<button class="btn">Delete</button>'

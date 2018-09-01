@@ -1,4 +1,5 @@
 export class Exam {
+    FSKey: string;
     branch: string;
     course: string;
     subject: string;

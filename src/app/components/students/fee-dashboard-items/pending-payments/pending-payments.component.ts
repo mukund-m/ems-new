@@ -22,8 +22,6 @@ export class PendingPaymentsComponent implements OnInit {
       this.type = data.type;
      }
   students: Student[]
-  dtTrigger: Subject<any> = new Subject();
-  dtOptions: DataTables.Settings = {};
   loading: boolean = false;
 
   tableColumns = [
@@ -59,7 +57,6 @@ export class PendingPaymentsComponent implements OnInit {
       }
       this.tableData = tData;
       this.loading = false;
-      this.dtTrigger.next();
       console.log(data);
     })
   }

@@ -14,7 +14,7 @@ import { RestService, AlertService, Fee } from 'app/components/shared';
 export class InstallmentComponent implements OnInit {
 
   form: FormGroup
-  installemnt: Installment;
+  installment: Installment;
   studentId: string;
   feeId: string;
   constructor(private dialogRef: MatDialogRef<InstallmentComponent>,
